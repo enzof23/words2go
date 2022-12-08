@@ -30,14 +30,25 @@ const NewWordForm = ({ title, list, setList }: Prop) => {
 
   const addWord = async (e: any) => {
     e.preventDefault();
+
+    // displays spinner in place of "add button" while posting in firebase
     setIsAdding(true);
+
+    const userID = user.uid;
+
     const wordID = getRandomId();
-    const newList = [...list, { wordID, word, translation }];
+    const newWord = { word, translation };
 
-    const listID = await getListID(user.uid, title);
-    await addWordToList(user.uid, listID, wordID, { word, translation });
+    const listID = await getListID(userID, title);
 
+    // add word to firebase
+    await addWordToList({ userID, listID, wordID, newWord });
+
+    // update list state to update UI
+    const newList = [...list, { wordID, ...newWord }];
     setList(newList);
+
+    // reset word form's state and inputs
     setIsAdding(false);
     setWord("");
     setTranslation("");

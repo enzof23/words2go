@@ -21,7 +21,7 @@ type ParamsType = {
   userid: string;
 };
 
-type ModalParam = {
+type ModalArgs = {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
@@ -30,7 +30,7 @@ const ListDisplay = () => {
 
   const { data, error, isFetching, isSuccess } = useQuery({
     queryKey: ["fetchList"],
-    queryFn: () => getListByID(userid, listid),
+    queryFn: () => getListByID({ userID: userid, listID: listid }),
   });
 
   const [list, setList] = useState<WordType[]>(isSuccess ? data.words : []);
@@ -72,7 +72,11 @@ const ListDisplay = () => {
 
   const renameHandler = async () => {
     setIsRenamingList(true);
-    await updateListTitle(userid, listid, listTitle);
+    await updateListTitle({
+      userID: userid,
+      listID: listid,
+      newTitle: listTitle,
+    });
     setIsRenamingList(false);
     setRenameList(false);
   };
@@ -214,7 +218,8 @@ const ListDisplay = () => {
 };
 export default ListDisplay;
 
-const DeleteModal = ({ setOpenModal }: ModalParam) => {
+// Modal displayed when user tries to delete list - just as a safe check before deleting list
+const DeleteModal = ({ setOpenModal }: ModalArgs) => {
   const { userid, listid } = useParams<keyof ParamsType>() as ParamsType;
   const navigate = useNavigate();
 
@@ -222,7 +227,9 @@ const DeleteModal = ({ setOpenModal }: ModalParam) => {
 
   const confirmDelete = async () => {
     setIsDeleting(true);
-    await deleteList(userid, listid);
+
+    await deleteList({ userID: userid, listID: listid });
+
     setIsDeleting(false);
     navigate("/");
   };

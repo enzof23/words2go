@@ -3,7 +3,6 @@ import {
   useLocation,
   useNavigate,
   useOutletContext,
-  useParams,
 } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "firebase/auth";
@@ -30,14 +29,6 @@ const MainOutlet = () => {
     queryFn: () => getAllLists(user.uid),
   });
 
-  if (error instanceof Error) {
-    return (
-      <div className="outlet__wrapper">
-        An error has occured, could not fetch lists - {error.message}
-      </div>
-    );
-  }
-
   const OutletTitle =
     pathname === "/" ? (
       <div className="outlet__title">
@@ -50,6 +41,14 @@ const MainOutlet = () => {
         <p>Note: you need at least 5 words in your list to start a practice.</p>
       </div>
     ) : null;
+
+  if (error instanceof Error) {
+    return (
+      <div className="outlet__wrapper">
+        An error has occured, could not fetch lists - {error.message}
+      </div>
+    );
+  }
 
   return (
     <div className="outlet__wrapper">

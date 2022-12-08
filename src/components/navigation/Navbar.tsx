@@ -1,13 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { userSignOut } from "../../utils/auth";
 
 const Navbar: React.FC = () => {
-  const navigate = useNavigate();
-
   const signOut = () => {
     userSignOut();
-    // navigate("/");
   };
 
   return (

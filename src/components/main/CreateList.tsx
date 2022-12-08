@@ -3,7 +3,6 @@ import { useState } from "react";
 import { User } from "firebase/auth";
 
 import { createNewList } from "../../utils/firebase-api";
-import { getDate } from "../../utils/util";
 import { WordType } from "../../types/list_types";
 
 import { HalfCircleSpinner } from "react-epic-spinners";
@@ -29,10 +28,10 @@ const CreateList = () => {
     e.preventDefault();
 
     if (title) {
-      const date = getDate();
+      const userID = user.uid;
       setCreatingList(true);
 
-      const id = await createNewList(user.uid, title, date);
+      const id = await createNewList(userID, title);
 
       setListID(id);
       setCreatingList(false);

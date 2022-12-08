@@ -12,28 +12,12 @@ import {
   sendPasswordResetEmail,
 } from "firebase/auth";
 
-interface AuthStatus {
-  user: User | null;
-  loading: boolean;
-  error: Error | null;
-}
-
-export type SignUpCredentials = {
-  username: string;
-} & SignInCredentials;
-
-export type SignInCredentials = {
-  email: string;
-  password: string;
-};
-
-type SignUpEmail = ({
-  email,
-  password,
-  username,
-}: SignUpCredentials) => Promise<void>;
-type SignInEmail = ({ email, password }: SignInCredentials) => Promise<void>;
-type PromiseType = () => Promise<void>;
+import {
+  AuthStatus,
+  PromiseType,
+  SignInEmail,
+  SignUpEmail,
+} from "../types/auth_types";
 
 // auth observer
 
@@ -72,14 +56,16 @@ export const signUpEmail: SignUpEmail = async ({
   email,
   password,
   username,
-}: SignUpCredentials) => {
+}) => {
   try {
     const userData = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+
     const user: User = userData.user;
+
     await updateProfile(user, {
       displayName: username,
     });
@@ -88,10 +74,7 @@ export const signUpEmail: SignUpEmail = async ({
   }
 };
 
-export const signInEmail: SignInEmail = async ({
-  email,
-  password,
-}: SignInCredentials) => {
+export const signInEmail: SignInEmail = async ({ email, password }) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
   } catch (err) {

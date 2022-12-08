@@ -1,6 +1,23 @@
-import { SetStateAction } from "react";
+// Firebase List CRUD functions types
 
-export type UseStateBooleanType = React.Dispatch<SetStateAction<boolean>>;
+export type ListRef = {
+  userID: string;
+  listID: string;
+};
+
+export type WordRef = {
+  wordID: string;
+} & ListRef;
+
+export type UpdatedWordArgs = {
+  newWord: WordFields;
+} & WordRef;
+
+export type UpdateTitleArgs = {
+  newTitle: string;
+} & ListRef;
+
+// List specific types
 
 export type WordFields = {
   word: string;

@@ -1,13 +1,13 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { User } from "firebase/auth";
 import { useOutletContext } from "react-router-dom";
 
-import { deleteWordFromList, updateWord } from "../../../utils/firebase-api";
-
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import "../../../styles/_listStyle.scss";
-import { WordType } from "../../../types/list_types";
 import { HalfCircleSpinner } from "react-epic-spinners";
+
+import { deleteWordFromList, updateWord } from "../../../utils/firebase-api";
+import { WordType } from "../../../types/list_types";
+import "../../../styles/_listStyle.scss";
 
 type WordsListProps = {
   listId: string;
@@ -31,8 +31,11 @@ const WordRow = ({ listId, wordData, setList }: WordsListProps) => {
   const [newTranslation, setNewTranslation] = useState<string>(translation);
 
   const deleteWord = async () => {
+    const userID = user.uid;
     setIsDeleting(true);
-    await deleteWordFromList(user.uid, listId, wordID);
+
+    await deleteWordFromList({ userID, listID: listId, wordID });
+
     setList((prevList) => prevList.filter((word) => word.wordID !== wordID));
     setIsDeleting(false);
   };
@@ -40,21 +43,28 @@ const WordRow = ({ listId, wordData, setList }: WordsListProps) => {
   const editWord = async () => {
     if (newWord !== word || newTranslation !== translation) {
       setLoadingEdit(true);
-      await updateWord(user.uid, listId, wordID, {
-        word: newWord,
-        translation: newTranslation,
+
+      const userID = user.uid;
+      const updatedWord = { word: newWord, translation: newTranslation };
+
+      await updateWord({
+        userID,
+        listID: listId,
+        wordID,
+        newWord: updatedWord,
       });
 
       setList((prevList) => {
         return prevList.map((word) => {
           if (word.wordID !== wordID) return word;
-          else return { wordID, word: newWord, translation: newTranslation };
+          else return { wordID, ...updatedWord };
         });
       });
 
       setIsEditing(false);
       setLoadingEdit(false);
     }
+
     setIsEditing(false);
   };
 

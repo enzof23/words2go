@@ -10,26 +10,30 @@ import {
   updateDoc,
 } from "firebase/firestore";
 
-import type { ListType, WordFields } from "../types/list_types";
+import type {
+  ListType,
+  UpdatedWordArgs,
+  ListRef,
+  WordRef,
+  UpdateTitleArgs,
+} from "../types/list_types";
+
+import { getDate } from "./util";
 
 /////// Write / Add data ///////
 
-export const createNewList = async (
-  userID: string,
-  title: string,
-  date: string
-) => {
+export const createNewList = async (userID: string, title: string) => {
+  const date = getDate();
   await addDoc(collection(database, userID), { title, date });
-
   return getListID(userID, title);
 };
 
-export const addWordToList = async (
-  userID: string,
-  listID: string,
-  wordID: string,
-  newWord: WordFields
-) => {
+export const addWordToList = async ({
+  userID,
+  listID,
+  wordID,
+  newWord,
+}: UpdatedWordArgs) => {
   await setDoc(doc(database, userID, listID, "words", wordID), newWord);
 };
 
@@ -69,12 +73,12 @@ export const getAllLists = async (userID: string) => {
     return listWithWords;
     //
   } catch (err) {
-    alert(`An error has occured: ${err}`);
+    console.log(`An error has occured: ${err}`);
     return (listWithWords = []);
   }
 };
 
-export const getListByID = async (userID: string, listID: string) => {
+export const getListByID = async ({ userID, listID }: ListRef) => {
   let list: ListType = { listID: "", title: "", date: "", words: [] };
 
   try {
@@ -104,7 +108,7 @@ export const getListByID = async (userID: string, listID: string) => {
 
     return list;
   } catch (err) {
-    console.log(err);
+    console.log(`An error has occured: ${err}`);
     return list;
   }
 };
@@ -126,7 +130,7 @@ export const getListID = async (userID: string, title: string) => {
   }
 };
 
-export const getListTitle = async (userID: string, listID: string) => {
+export const getListTitle = async ({ userID, listID }: ListRef) => {
   const docRef = collection(database, userID);
   const docLists = await getDocs(docRef);
   let listTitle: string = "";
@@ -147,16 +151,16 @@ export const getListTitle = async (userID: string, listID: string) => {
 
 /////// Delete Data ///////
 
-export const deleteWordFromList = async (
-  userID: string,
-  listID: string,
-  wordID: string
-) => {
+export const deleteWordFromList = async ({
+  userID,
+  listID,
+  wordID,
+}: WordRef) => {
   const wordRef = doc(database, userID, listID, "words", wordID);
   await deleteDoc(wordRef);
 };
 
-export const deleteList = async (userID: string, listID: string) => {
+export const deleteList = async ({ userID, listID }: ListRef) => {
   const wordsListRef = collection(database, userID, listID, "words");
   const listDocs = await getDocs(wordsListRef);
 
@@ -174,21 +178,21 @@ export const deleteList = async (userID: string, listID: string) => {
 
 /////// Update Data ///////
 
-export const updateWord = async (
-  userID: string,
-  listID: string,
-  wordID: string,
-  newWord: WordFields
-) => {
+export const updateWord = async ({
+  userID,
+  listID,
+  wordID,
+  newWord,
+}: UpdatedWordArgs) => {
   const wordRef = doc(database, userID, listID, "words", wordID);
   await updateDoc(wordRef, newWord);
 };
 
-export const updateListTitle = async (
-  userID: string,
-  listID: string,
-  newTitle: string
-) => {
+export const updateListTitle = async ({
+  userID,
+  listID,
+  newTitle,
+}: UpdateTitleArgs) => {
   const listRef = doc(database, userID, listID);
   await setDoc(listRef, {
     title: newTitle,

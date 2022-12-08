@@ -13,7 +13,7 @@ const PracticeDisplay = () => {
 
   const { data, error, isFetching } = useQuery({
     queryKey: ["fetchList"],
-    queryFn: () => getListByID(userid, listid),
+    queryFn: () => getListByID({ userID: userid, listID: listid }),
   });
 
   if (isFetching) {

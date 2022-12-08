@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
-import { SignUpCredentials, signUpEmail } from "../../utils/auth";
+import { signUpEmail } from "../../utils/auth";
+import { SignUpCredentials } from "../../types/auth_types";
 
 import { AuthenticationInput } from "../../styles/mui-styled";
 

@@ -1,0 +1,157 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nabla&display=swap");
+
+/* color palette */
+:root {
+  --base-black: #000000;
+  --base-black-soft: #222222;
+  --base-black-mute: rgb(41, 41, 41);
+
+  --base-white: #ffffff;
+  --base-white-soft: #f8f8f8;
+  --base-white-mute: #f1f1f1;
+  --base-white-faded: rgba(248, 248, 248, 0.75);
+
+  --base-grey-light: #cec3bd;
+  --base-grey-dark: #545454;
+
+  --base-yellow: rgb(254, 205, 31);
+  --base-yellow-dark: rgb(218, 173, 9);
+
+  --base-divider-light-1: rgba(60, 60, 60, 0.29);
+  --base-divider-light-2: rgba(60, 60, 60, 0.12);
+  --base-divider-dark-1: rgba(84, 84, 84, 0.65);
+  --base-divider-dark-2: rgba(84, 84, 84, 0.48);
+
+  --base-box-shadow: rgba(0, 0, 0, 0.25);
+  --base-background-filter: rgba(84, 84, 84, 0.3);
+
+  --base-text-light-1: var(--base-white-soft);
+  --base-text-light-2: var(--base-grey-light);
+
+  --base-text-dark-1: var(--base-black-mute);
+  --base-text-dark-2: var(--base-grey-dark);
+}
+
+/* semantic color variables for this project */
+:root {
+  --color-background-light: var(--base-white-mute);
+
+  --color-background-dark-1: var(--base-black-soft);
+  --color-background-dark-2: var(--base-black-mute);
+  --color-background-dark-3: var(--base-grey-dark);
+
+  --color-background-faded: var(--base-background-filter);
+
+  --color-border-light: var(--base-white-soft);
+  --border-light-hover: var(--base-white-mute);
+
+  --color-border-dark: var(--base-black-soft);
+  --border-dark-hover: var(--base-yellow);
+
+  --color-heading-light: var(--base-white-soft);
+  --color-heading-dark: var(--base-black-soft);
+
+  --color-text-light: var(--base-white-mute);
+  --color-text-dark: var(--base-black-mute);
+
+  --color-text-yellow: var(--base-yellow);
+}
+
+/* CSS basic rules set up */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  position: relative;
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+:root {
+  font-family: "Roboto", "Open Sans", sans-serif;
+  font-size: 16px;
+
+  color-scheme: light dark;
+  color: var(--color-text-light);
+  background: var(--color-background-dark-1);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-width: 300px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Roboto";
+}
+
+p,
+a,
+li,
+input,
+button,
+textarea,
+select {
+  font-family: "Open Sans";
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+input,
+button {
+  outline: none;
+  border: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.flex__center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page__wrapper {
+  padding: 65px 1rem 1rem;
+  min-height: 100vh;
+}
+
+.text__button {
+  margin: 0;
+  padding: 0;
+
+  /* border: none;
+  outline: none; */
+  background-color: transparent;
+}

@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
-import OutletLoader from "../../../layouts/OutletLoader";
-import { getListByID } from "../../../utils/firebase-api";
+import { getListByID } from "../../utils/firebase-api";
+import { OutletLoader } from "../../layouts/_index";
 
 type ParamsType = {
   listid: string;
@@ -22,7 +22,7 @@ const PracticeDisplay = () => {
 
   if (error instanceof Error) {
     return (
-      <div className="outlet__wrapper">
+      <div className="outlet__container">
         An error has occured, could not fetch lists. {error.message}
       </div>
     );

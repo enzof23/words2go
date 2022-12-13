@@ -19,7 +19,7 @@ const ListCard = ({ data, route }: ListCardProps) => {
         // <ListDisplay /> is rendered on this route
       }
     >
-      <div className="card">
+      <div className="list__info">
         <h5>{data.title}</h5>
         <p>
           {data.words.length} word{data.words.length === 1 ? null : "s"}

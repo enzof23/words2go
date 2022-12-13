@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
@@ -6,15 +6,18 @@ import {
   deleteList,
   getListByID,
   updateListTitle,
-} from "../../../utils/firebase-api";
-import { WordType } from "../../../types/list_types";
+} from "../../utils/firebase-api";
+import { WordType } from "../../types/list_types";
 
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { OutletLoader } from "../../../layouts/_index";
-import WordRow from "../ui/WordRow";
-import "../../../styles/_listStyle.scss";
+import { OutletLoader } from "../../layouts/_index";
+import WordRow from "./ui/WordRow";
+
+import "../../styles/_library.css";
+import "../../styles/list-components.css";
+
 import { HalfCircleSpinner } from "react-epic-spinners";
-import NewWordForm from "../ui/NewWordForm";
+import NewWordForm from "./ui/NewWordForm";
 
 type ParamsType = {
   listid: string;
@@ -50,16 +53,19 @@ const ListDisplay = () => {
 
   const [renameList, setRenameList] = useState<boolean>(false);
   const [isRenamingList, setIsRenamingList] = useState<boolean>(false);
+  const renameInputRef = useRef<HTMLInputElement>(null);
+  const [inputFocus, setInputFocus] = useState<boolean>(false);
 
   const [addWord, setAddWord] = useState<boolean>(false);
 
   const menuAction = async (e: any) => {
     switch (e.target.id) {
       case "add-word":
-        setAddWord(true);
+        setAddWord(!addWord);
         break;
       case "rename-list":
         setRenameList(true);
+        // renameInputRef.current?.focus();
         break;
       case "delete-list":
         setOpenModal(true);
@@ -71,12 +77,16 @@ const ListDisplay = () => {
   };
 
   const renameHandler = async () => {
-    setIsRenamingList(true);
-    await updateListTitle({
-      userID: userid,
-      listID: listid,
-      newTitle: listTitle,
-    });
+    // only update if title has been updated
+    if (listTitle !== data?.title) {
+      setIsRenamingList(true);
+      await updateListTitle({
+        userID: userid,
+        listID: listid,
+        newTitle: listTitle,
+      });
+    }
+
     setIsRenamingList(false);
     setRenameList(false);
   };
@@ -88,7 +98,7 @@ const ListDisplay = () => {
   // close menu when user clicks outside menu
   useEffect(() => {
     const closeMenuOnClickAway = (event: any) => {
-      if (!event.target.closest(".list-display__menu")) {
+      if (!event.target.closest(".library__menu")) {
         setOpenMenu(false);
       }
     };
@@ -121,9 +131,9 @@ const ListDisplay = () => {
             {/* List Title Start */}
             {!renameList ? (
               // Normal list title display
-              <div className="list-display__title">
+              <div className="library__title">
                 <h2>{listTitle}</h2>
-                <div className="list-display__menu">
+                <div className="library__menu">
                   <button type="button" onClick={() => setOpenMenu(!openMenu)}>
                     <BsThreeDotsVertical />
                   </button>
@@ -145,18 +155,25 @@ const ListDisplay = () => {
               </div>
             ) : (
               // List title display while updating title
-              <div className="list-display__title">
-                <input
-                  className="rename__input"
-                  maxLength={30}
-                  value={listTitle}
-                  onChange={(e) => setListTitle(e.currentTarget.value)}
-                  autoFocus
-                />
+              <div className="library__title">
+                <div
+                  className={`rename__input ${inputFocus && "input__focused"}`}
+                >
+                  <input
+                    ref={renameInputRef}
+                    maxLength={30}
+                    value={listTitle}
+                    onChange={(e) => setListTitle(e.currentTarget.value)}
+                    onFocus={() => setInputFocus(!inputFocus)}
+                    onBlur={() => setInputFocus(false)}
+                    autoFocus
+                  />
+                </div>
                 <button
                   className="rename__button"
                   type="button"
                   onClick={renameHandler}
+                  disabled={listTitle.length === 0}
                 >
                   {isRenamingList ? (
                     <HalfCircleSpinner color="var(--base-yellow)" size={24} />
@@ -169,7 +186,7 @@ const ListDisplay = () => {
             {/* List Title End */}
 
             {/* Add New Word Start */}
-            <div className={`list-display__new-word ${addWord && "is-adding"}`}>
+            <div className={`library__new-word ${addWord && "is-adding"}`}>
               <NewWordForm title={listTitle} list={list} setList={setList} />
               <button className="save__button" onClick={addWordHandler}>
                 done
@@ -235,11 +252,9 @@ const DeleteModal = ({ setOpenModal }: ModalArgs) => {
   };
 
   return (
-    <div className="fullpage__container modal__container">
+    <div className="modal__container">
       {isDeleting ? (
-        <div>
-          <HalfCircleSpinner color="var(--base-yellow)" size={76} />
-        </div>
+        <HalfCircleSpinner color="var(--base-yellow)" size={76} />
       ) : (
         <div className="modal__content">
           <p>Press confirm to delete the list</p>

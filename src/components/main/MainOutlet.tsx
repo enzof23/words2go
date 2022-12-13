@@ -72,6 +72,8 @@ const MainOutlet = () => {
 
 export default MainOutlet;
 
+// Libray Grid Component
+
 const LibraryGrid = ({ data, navigate }: OutletParams) => {
   return (
     <div className="outlet__grid">
@@ -88,6 +90,8 @@ const LibraryGrid = ({ data, navigate }: OutletParams) => {
     </div>
   );
 };
+
+// Practice Grid Component
 
 const PracticeGrid = ({ data, navigate }: OutletParams) => {
   return (

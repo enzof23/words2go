@@ -8,7 +8,7 @@ import { addWordToList, getListID } from "../../../utils/firebase-api";
 import { getRandomId } from "../../../utils/util";
 import { WordType } from "../../../types/list_types";
 
-import "../../../styles/_listStyle.scss";
+import "../../../styles/list-components.css";
 
 type Prop = {
   setList: React.Dispatch<React.SetStateAction<WordType[]>>;
@@ -58,9 +58,8 @@ const NewWordForm = ({ title, list, setList }: Prop) => {
   return (
     <form className="new-word__form" onSubmit={addWord}>
       <div className="input__container">
-        <div className={`input__styled ${wordFocus && "input__focused"}`}>
+        <div className={`word__input ${wordFocus && "input__focused"}`}>
           <input
-            className="word__input"
             placeholder="Enter word..."
             value={word}
             ref={wordInputRef}
@@ -73,9 +72,8 @@ const NewWordForm = ({ title, list, setList }: Prop) => {
         <p>word</p>
       </div>
       <div className="input__container">
-        <div className={`input__styled ${transFocus && "input__focused"}`}>
+        <div className={`word__input ${transFocus && "input__focused"}`}>
           <input
-            className="word__input"
             placeholder="Enter translation..."
             value={translation}
             onFocus={() => setTransFocused(!transFocus)}
@@ -85,11 +83,7 @@ const NewWordForm = ({ title, list, setList }: Prop) => {
         </div>
         <p>translation</p>
       </div>
-      <button
-        type="submit"
-        className="word-input__button"
-        disabled={!word || !translation}
-      >
+      <button type="submit" disabled={!word || !translation}>
         {isAdding ? (
           <HalfCircleSpinner color="var(--base-yellow)" size={28} />
         ) : (

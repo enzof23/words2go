@@ -8,9 +8,9 @@ const Navbar: React.FC = () => {
 
   return (
     <nav className="navbar__container">
-      <h1 className="navbar__logo">
-        <Link to={"/"}>Words2Go</Link>
-      </h1>
+      <Link className="navbar__logo" to={"/"}>
+        Words2Go
+      </Link>
 
       <button className="navbar__button" onClick={signOut}>
         sign out

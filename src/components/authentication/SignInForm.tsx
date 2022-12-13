@@ -18,7 +18,7 @@ const SignInForm = () => {
   };
 
   return (
-    <form onSubmit={signIn} className="flex__center">
+    <form onSubmit={signIn}>
       <AuthenticationInput
         label="Email address"
         type="email"

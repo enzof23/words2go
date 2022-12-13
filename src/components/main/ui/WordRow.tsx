@@ -7,7 +7,7 @@ import { HalfCircleSpinner } from "react-epic-spinners";
 
 import { deleteWordFromList, updateWord } from "../../../utils/firebase-api";
 import { WordType } from "../../../types/list_types";
-import "../../../styles/_listStyle.scss";
+import "../../../styles/list-components.css";
 
 type WordsListProps = {
   listId: string;
@@ -95,15 +95,17 @@ const WordRow = ({ listId, wordData, setList }: WordsListProps) => {
               />
             </div>
           </div>
-          <div className="buttons__container-editing">
-            <button onClick={editWord}>
-              {loadingEdit ? (
-                <HalfCircleSpinner color="var(--base-yellow)" size={28} />
-              ) : (
-                "done"
-              )}
-            </button>
-          </div>
+          <button
+            className="button__editing"
+            onClick={editWord}
+            disabled={!newWord || !newTranslation}
+          >
+            {loadingEdit ? (
+              <HalfCircleSpinner color="var(--base-yellow)" size={28} />
+            ) : (
+              "done"
+            )}
+          </button>
         </>
       ) : (
         <>

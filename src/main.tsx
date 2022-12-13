@@ -4,12 +4,7 @@ import App from "./App";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./styles/index.css";
-import {
-  CreateList,
-  ListDisplay,
-  MainOutlet,
-  PracticeDisplay,
-} from "./components";
+import { CreateList, Library, MainOutlet, Practice } from "./components";
 
 const router = createBrowserRouter([
   {
@@ -30,11 +25,11 @@ const router = createBrowserRouter([
       },
       {
         path: ":userid/:listid",
-        element: <ListDisplay />,
+        element: <Library />,
       },
       {
         path: "/practice/:userid/:listid",
-        element: <PracticeDisplay />,
+        element: <Practice />,
       },
     ],
   },

@@ -1,0 +1,269 @@
+/* Library Header : Title & Menu */
+
+.library__title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.library__title > h2 {
+  font-family: "Nabla";
+  font-size: 36px;
+  line-height: 50px;
+  text-transform: uppercase;
+  overflow: hidden;
+}
+
+.library__menu > button {
+  display: grid;
+  place-items: center;
+
+  background-color: transparent;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+
+  transition: 200ms;
+}
+
+.library__menu > button:hover {
+  background-color: var(--color-background-dark-2);
+  color: var(--base-yellow);
+}
+
+.library__menu > button > svg {
+  font-size: 26px;
+}
+
+.menu {
+  position: absolute;
+  z-index: 5;
+  top: 110%;
+  right: 40%;
+
+  width: max-content;
+
+  height: 0;
+  overflow: hidden;
+  transition: 150ms;
+
+  background-color: var(--color-background-dark-1);
+  border: 0 solid var(--base-grey-light);
+  border-radius: 4px;
+}
+
+.menu > li {
+  z-index: 5;
+  padding: 0.75rem 1.5rem 0.75rem 1rem;
+  border-bottom: 1px solid var(--base-grey-light);
+
+  width: 100%;
+  cursor: pointer;
+}
+
+.menu > li:nth-child(3) {
+  border-bottom: none;
+}
+
+.menu > li:hover {
+  background-color: var(--color-background-dark-3);
+}
+
+.menu__open {
+  height: 142px;
+  border: 1px solid var(--base-grey-light);
+}
+
+/*  */
+
+/* Library - New Word Form */
+
+.library__new-word {
+  display: flex;
+  flex-direction: column;
+  row-gap: 2rem;
+  margin-top: -2rem;
+
+  height: 0px;
+  opacity: 0;
+
+  transition: 500ms;
+}
+
+.is-adding {
+  opacity: 1;
+  height: 224px;
+  margin-top: 0;
+}
+
+/*  */
+
+/* Rename List */
+
+.rename__input {
+  width: 80%;
+  border-bottom: 2px solid var(--color-border-grey-faded);
+}
+
+.rename__input > input {
+  background-color: transparent;
+  width: 100%;
+  overflow: hidden;
+
+  font-size: 36px;
+  line-height: 46px;
+  font-family: "Nabla";
+}
+
+.rename__input::after {
+  content: "";
+
+  display: block;
+  width: 0px;
+  height: 2px;
+  left: 0;
+
+  background: var(--base-yellow);
+
+  transition: 300ms;
+}
+
+.input__focused::after {
+  width: 100%;
+}
+
+.rename__button {
+  background-color: var(--color-background-dark-2);
+
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+
+  padding: 0.5rem 0.75rem;
+  border-radius: 4px;
+
+  transition: 200ms;
+}
+
+.rename__button:hover:enabled {
+  color: var(--base-yellow);
+  background-color: var(--color-background-dark-3);
+}
+
+/*  */
+
+/* Delete List */
+
+.modal__container {
+  display: grid;
+  place-items: center;
+
+  min-width: 100vw;
+  min-height: 100vh;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  z-index: 15;
+  background-color: rgba(41, 41, 41, 0.9);
+  backdrop-filter: blur(8px);
+}
+
+.modal__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 2rem;
+
+  padding: 3rem;
+  border-radius: 4px;
+  background-color: var(--color-background-dark-3);
+  box-shadow: 0 0 10px var(--base-grey-dark);
+
+  font-size: 20px;
+
+  -webkit-animation: scaleinmin 300ms;
+  -moz-animation: scaleinmin 300ms;
+  -ms-animation: scaleinmin 300ms;
+  -o-animation: scaleinmin 300ms;
+  animation: scaleinmin 300ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.modal__buttons {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.modal__buttons > button {
+  padding: 0.5rem 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: 16px;
+
+  border-radius: 8px;
+  box-shadow: 0 0 5px var(--base-box-shadow);
+}
+
+.cancel {
+  background-color: rgb(200, 0, 0);
+}
+
+/*  */
+
+/* Library List Display */
+
+.empty__list {
+  font-size: 16px;
+  text-transform: uppercase;
+  color: var(--base-text-light-2);
+}
+
+.empty__list > span {
+  cursor: pointer;
+  transition: 150ms;
+  text-decoration: underline;
+}
+
+.empty__list > span:hover {
+  color: var(--base-yellow);
+}
+
+@container outlet (max-width: 600px) {
+  .library__title > h2 {
+    font-size: 28px;
+  }
+
+  .rename__input > input {
+    font-size: 28px;
+  }
+
+  .is-adding {
+    height: 330px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .modal__container {
+    padding: 1rem;
+  }
+  .modal__content {
+    padding: 2.5rem 1rem;
+    text-align: center;
+  }
+
+  .modal__buttons {
+    flex-direction: column;
+    row-gap: 1.5rem;
+    width: 80%;
+  }
+
+  .modal__buttons > button {
+    padding: 1rem;
+  }
+}

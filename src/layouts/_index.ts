@@ -1,6 +1,4 @@
-import { default as FullscreenLoader } from "./FullscreenLoader";
-import { default as OutletLoader } from "./OutletLoader";
-import { default as GridLoader } from "./GridLoader";
+import { OutletLoader, GridLoader, FullscreenLoader } from "./LoadingSpinners";
 
 import { default as ErrorFallback } from "./ErrorFallback";
 

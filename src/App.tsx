@@ -1,9 +1,10 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
 import { FullscreenLoader } from "./layouts/_index";
 import { useFirebaseUser } from "./utils/auth";
+import { useNavigate } from "react-router-dom";
 
 const ErrorFallback = lazy(() => import("./layouts/ErrorFallback"));
 const Authentication = lazy(() => import("./pages/Authentication"));
@@ -19,6 +20,11 @@ const queryClient = new QueryClient({
 
 const App = () => {
   const { user, loading, error } = useFirebaseUser();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate("/");
+  }, []);
 
   if (loading) return <FullscreenLoader />;
 

@@ -5,11 +5,9 @@ import { default as Navbar } from "./navigation/Navbar";
 import { default as Sidebar } from "./navigation/Sidebar";
 
 import { default as MainOutlet } from "./main/MainOutlet";
-import { default as CreateList } from "./main/CreateList";
-
-import { default as ListDisplay } from "./main/library/ListDisplay";
-
-import { default as PracticeDisplay } from "./main/practice/PracticeDisplay";
+import { default as CreateList } from "./main/_CreateList";
+import { default as Library } from "./main/_Library";
+import { default as Practice } from "./main/_Practice";
 
 import { default as ListCard } from "./main/ui/ListCard";
 import { default as WordRow } from "./main/ui/WordRow";
@@ -22,8 +20,8 @@ export {
   Sidebar,
   MainOutlet,
   CreateList,
-  ListDisplay,
-  PracticeDisplay,
+  Library,
+  Practice,
   ListCard,
   WordRow,
   NewWordForm,

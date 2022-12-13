@@ -1,9 +1,11 @@
 import { BiError } from "react-icons/bi";
 
+import "../styles/layouts.css";
+
 const ErrorFallback = () => {
   return (
     <div
-      className="fullpage__container"
+      className="fullscreen__container"
       style={{
         color: "#c42f2f",
       }}

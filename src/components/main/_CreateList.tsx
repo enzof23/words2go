@@ -8,7 +8,7 @@ import { WordType } from "../../types/list_types";
 import { HalfCircleSpinner } from "react-epic-spinners";
 import { NewWordForm, WordRow } from "../index";
 
-import "../../styles/_createList.scss";
+import "../../styles/list-components.css";
 
 const CreateList = () => {
   const user: User = useOutletContext();
@@ -48,18 +48,18 @@ const CreateList = () => {
   return (
     <div className="outlet__wrapper">
       <div className="outlet__container">
-        <div className="outlet__title">
-          <h2>create a new list</h2>
-        </div>
+        {!hasTitle && (
+          <div className="outlet__title">
+            <h2>create a new list</h2>
+          </div>
+        )}
         <div className="create-list__container">
           {/* List Title */}
           {!hasTitle ? (
             <div className="title__container">
-              <h5 className="title__header">Name your new list.</h5>
+              <h5 className="title__header">Name your new list</h5>
               <form
-                className={`title__form input__styled ${
-                  triggerBorder && "input__focused"
-                }`}
+                className={`title__form ${triggerBorder && "input__focused"}`}
                 onSubmit={createList}
               >
                 <input
@@ -73,7 +73,7 @@ const CreateList = () => {
                 />
                 <button type="submit" disabled={!title}>
                   {creatingList ? (
-                    <HalfCircleSpinner color="var(--base-yellow)" size={32} />
+                    <HalfCircleSpinner color="var(--base-yellow)" size={28} />
                   ) : (
                     "create"
                   )}
@@ -86,23 +86,25 @@ const CreateList = () => {
           {/* New Word Form */}
           {hasTitle ? (
             <div className="new-word__container">
-              <h2 className="list__title">{title}</h2>
+              <h2 className="create-list__title">{title}</h2>
               <NewWordForm title={title} list={list} setList={setList} />
-              <button
-                type="button"
-                className={`save__button ${list.length > 0 ? "save" : "empty"}`}
-                onClick={createListDone}
-              >
-                done
-              </button>
+              {list.length > 0 && (
+                <button
+                  type="button"
+                  className="save__button"
+                  onClick={createListDone}
+                >
+                  done
+                </button>
+              )}
             </div>
           ) : null}
           {/* New Word Input End */}
 
           {/* List Display */}
-          <div className="words-list__container">
-            {listID &&
-              list.map((word) => {
+          {list.length > 0 && listID ? (
+            <div className="words-list__container">
+              {list.map((word) => {
                 return (
                   <WordRow
                     key={word.wordID}
@@ -112,7 +114,8 @@ const CreateList = () => {
                   />
                 );
               })}
-          </div>
+            </div>
+          ) : null}
           {/* List Display End */}
         </div>
       </div>

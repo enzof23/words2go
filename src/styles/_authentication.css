@@ -320,13 +320,14 @@
 
 @container authentication (max-width: 1080px) {
   .authentication__container {
-    row-gap: 4rem;
+    row-gap: 3rem;
     padding: 1rem 1rem 2rem;
   }
 
   .authentication__header {
     align-items: center;
     text-align: center;
+    row-gap: 1.5rem;
   }
 
   .header__main {
@@ -354,7 +355,11 @@
 
   .header__sub > h2 {
     margin: 0 auto;
-    font-size: 24px;
+    font-size: 22px;
+  }
+
+  .header__sub > p {
+    font-size: 15px;
   }
 
   .circles__container {

@@ -1,0 +1,131 @@
+/* Practice Header */
+
+.practice__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  column-gap: 1rem;
+}
+
+.practice__header > h2 {
+  font-family: "Nabla";
+  font-size: 36px;
+  line-height: 60px;
+  text-transform: uppercase;
+}
+
+.practice__category {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  align-self: flex-end;
+}
+
+.category__item {
+  display: grid;
+  place-items: center;
+  height: 50px;
+
+  font-size: 14px;
+  color: var(--color-text-light-grey);
+  text-transform: uppercase;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  cursor: pointer;
+  transition: 300ms;
+}
+
+.practice__category > div:not(.selected):hover {
+  color: var(--color-text-yellow);
+}
+
+#flashcards {
+  width: 120px;
+}
+
+#match,
+#write {
+  width: 75px;
+}
+
+#flashcards.selected {
+  width: 140px;
+}
+
+#match.selected,
+#write.selected {
+  width: 100px;
+}
+
+.selected {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-text-light);
+
+  background-color: var(--color-background-dark-3);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+/* Practice Outlet Container */
+
+.practice__container {
+  display: grid;
+  place-items: center;
+
+  min-height: 350px;
+  margin-top: -2rem;
+
+  border: 2px solid var(--color-border-grey-faded);
+}
+
+/* Container & Media Queries */
+
+@media screen and (max-width: 770px) {
+  .practice__header > h2 {
+    font-size: 28px;
+  }
+}
+
+@container outlet (max-width: 600px) {
+  .practice__header {
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+
+  .practice__category {
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  #flashcards,
+  #match,
+  #write,
+  #flashcards.selected,
+  #match.selected,
+  #write.selected {
+    width: 100%;
+  }
+}
+
+@container outlet (max-width: 400px) {
+  .practice__category {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5rem;
+  }
+
+  .category__item {
+    height: auto;
+    padding: 1rem;
+    justify-items: start;
+
+    border-radius: 10px;
+    border: 3px solid var(--color-border-grey-faded);
+  }
+
+  .practice__container {
+    margin-top: 0;
+  }
+}

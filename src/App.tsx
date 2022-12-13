@@ -18,9 +18,11 @@ const queryClient = new QueryClient({
   },
 });
 
+type ParamsType = { userid: string };
+
 const App = () => {
   const { user, loading, error } = useFirebaseUser();
-  const { userid } = useParams();
+  const { userid } = useParams<keyof ParamsType>() as ParamsType;
 
   const navigate = useNavigate();
 

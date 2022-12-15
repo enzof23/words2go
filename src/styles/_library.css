@@ -28,7 +28,7 @@
 }
 
 .library__menu > button:hover {
-  background-color: var(--color-background-dark-2);
+  background-color: var(--background-dark-2);
   color: var(--base-yellow);
 }
 
@@ -48,7 +48,7 @@
   overflow: hidden;
   transition: 150ms;
 
-  background-color: var(--color-background-dark-1);
+  background-color: var(--background-dark-1);
   border: 0 solid var(--base-grey-light);
   border-radius: 4px;
 }
@@ -67,7 +67,7 @@
 }
 
 .menu > li:hover {
-  background-color: var(--color-background-dark-3);
+  background-color: var(--background-dark-3);
 }
 
 .menu__open {
@@ -103,7 +103,7 @@
 
 .rename__input {
   width: 80%;
-  border-bottom: 2px solid var(--color-border-grey-faded);
+  border-bottom: 2px solid var(--border-grey-faded);
 }
 
 .rename__input > input {
@@ -134,7 +134,7 @@
 }
 
 .rename__button {
-  background-color: var(--color-background-dark-2);
+  background-color: var(--background-dark-2);
 
   text-transform: uppercase;
   font-size: 16px;
@@ -148,7 +148,7 @@
 
 .rename__button:hover:enabled {
   color: var(--base-yellow);
-  background-color: var(--color-background-dark-3);
+  background-color: var(--background-dark-3);
 }
 
 /*  */
@@ -180,7 +180,7 @@
 
   padding: 3rem;
   border-radius: 4px;
-  background-color: var(--color-background-dark-3);
+  background-color: var(--background-dark-3);
   box-shadow: 0 0 10px var(--base-grey-dark);
 
   font-size: 20px;

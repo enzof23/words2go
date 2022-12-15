@@ -79,7 +79,7 @@
     max-width: 500px;
     width: 100%;
 
-    border: 1px solid var(--color-border-grey-faded);
+    border: 1px solid var(--border-grey-faded);
     border-radius: 8px;
   }
 }

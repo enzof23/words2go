@@ -194,7 +194,11 @@ export const updateListTitle = async ({
   newTitle,
 }: UpdateTitleArgs) => {
   const listRef = doc(database, userID, listID);
+  const list = await getDoc(listRef);
+  const date = list.data()?.date;
+
   await setDoc(listRef, {
     title: newTitle,
+    date,
   });
 };

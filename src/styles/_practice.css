@@ -26,7 +26,7 @@
   height: 50px;
 
   font-size: 14px;
-  color: var(--color-text-light-grey);
+  color: var(--text-light-grey);
   text-transform: uppercase;
 
   border-top-left-radius: 10px;
@@ -37,7 +37,7 @@
 }
 
 .practice__category > div:not(.selected):hover {
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
 }
 
 #flashcards {
@@ -61,9 +61,9 @@
 .selected {
   font-size: 18px;
   font-weight: 600;
-  color: var(--color-text-light);
+  color: var(--text-light);
 
-  background-color: var(--color-background-dark-3);
+  background-color: var(--background-dark-3);
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
@@ -77,7 +77,144 @@
   min-height: 350px;
   margin-top: -2rem;
 
-  border: 2px solid var(--color-border-grey-faded);
+  border: 3px solid var(--border-grey-faded);
+}
+
+/*  */
+
+/* Flashcard */
+
+.flashcard__container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+
+  padding: 3rem 1rem 2rem;
+
+  -webkit-animation: scaleinmin 500ms;
+  -moz-animation: scaleinmin 500ms;
+  -ms-animation: scaleinmin 500ms;
+  -o-animation: scaleinmin 500ms;
+  animation: scaleinmin 500ms;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.flashcard__card {
+  width: 400px;
+  height: 250px;
+
+  transition: 1s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+  position: relative;
+}
+
+.flashcard__card.is-flipped {
+  transform: rotateY(180deg);
+}
+
+.card__face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  overflow: hidden;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 8px;
+  box-shadow: 0 0 8px 1px var(--shadow-light);
+}
+
+.card__front {
+  background: linear-gradient(
+    340deg,
+    rgba(41, 41, 41, 1) 0%,
+    rgba(84, 84, 84, 1) 100%
+  );
+}
+
+.card__back {
+  background: linear-gradient(
+    340deg,
+    rgba(84, 84, 84, 1) 0%,
+    rgba(41, 41, 41, 1) 100%
+  );
+
+  transform: rotateY(180deg);
+}
+
+.card__content {
+  font-size: 24px;
+  text-transform: uppercase;
+}
+
+.loop-svg {
+  position: absolute;
+  top: 4%;
+  right: 4%;
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+  opacity: 0;
+
+  font-size: 24px;
+  color: var(--text-yellow);
+  transition: 400ms;
+}
+
+.card__face:hover > .loop-svg {
+  opacity: 0.9;
+}
+
+.card__info {
+  position: absolute;
+  bottom: 5%;
+
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--text-light-faded);
+  text-transform: uppercase;
+}
+
+/*  */
+
+/* Flaschard navigation */
+
+.flashcard__navigation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navigation__button {
+  display: grid;
+  place-items: center;
+
+  cursor: pointer;
+}
+
+.navigation__button > svg {
+  font-size: 42px;
+  color: var(--text-light);
+  border-radius: 50%;
+  transition: 200ms;
+}
+
+.navigation__button:hover > svg {
+  color: var(--text-yellow);
+  background-color: var(--background-dark-2);
+}
+
+.navigation__counter {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-light-grey);
 }
 
 /* Container & Media Queries */
@@ -85,6 +222,10 @@
 @media screen and (max-width: 770px) {
   .practice__header > h2 {
     font-size: 28px;
+  }
+
+  .loop-svg {
+    display: none;
   }
 }
 
@@ -107,6 +248,36 @@
   #write.selected {
     width: 100%;
   }
+
+  .flashcard__container {
+    width: 100%;
+    align-items: center;
+
+    padding: 2rem 1rem 1rem;
+  }
+
+  .flashcard__card {
+    width: 100%;
+    max-width: 400px;
+    height: 220px;
+  }
+
+  .card__content {
+    font-size: 20px;
+  }
+
+  .card__info {
+    font-size: 13px;
+  }
+
+  .flashcard__navigation {
+    width: 100%;
+  }
+
+  .navigation__button:hover > svg {
+    color: var(--text-light);
+    background-color: transparent;
+  }
 }
 
 @container outlet (max-width: 400px) {
@@ -122,7 +293,7 @@
     justify-items: start;
 
     border-radius: 10px;
-    border: 3px solid var(--color-border-grey-faded);
+    border: 3px solid var(--border-grey-faded);
   }
 
   .practice__container {

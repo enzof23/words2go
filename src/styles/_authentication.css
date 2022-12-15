@@ -67,7 +67,7 @@
 }
 
 .header__sub > h2 > span {
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
   font-weight: 300;
 }
 
@@ -77,7 +77,7 @@
 }
 
 .header__sub > p > button {
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
   background-color: transparent;
   font-size: 16px;
 }
@@ -104,11 +104,11 @@
   width: 100%;
   max-width: 750px;
 
-  border: 2px solid var(--color-border-yellow-faded);
+  border: 2px solid var(--border-yellow-faded);
   border-radius: 8px;
 
   backdrop-filter: blur(5px);
-  background-color: var(--color-background-fade);
+  background-color: var(--background-fade);
 }
 
 .form__container > h2 {
@@ -120,7 +120,7 @@
 }
 
 .form__container > h2 > span {
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
   font-weight: 300;
 }
 
@@ -160,9 +160,9 @@
 
   border-radius: 3px;
 
-  background-color: var(--color-background-yellow);
-  box-shadow: 0 0 5px var(--color-shadow-yellow);
-  color: var(--color-text-dark);
+  background-color: var(--background-yellow);
+  box-shadow: 0 0 5px var(--shadow-yellow);
+  color: var(--text-dark);
   font-weight: 700;
   font-size: 16px;
   text-transform: uppercase;
@@ -171,9 +171,9 @@
 }
 
 .form__button:disabled {
-  background-color: var(--color-background-fade-grey);
+  background-color: var(--background-fade-grey);
   box-shadow: none;
-  color: var(--color-text-light);
+  color: var(--text-light);
 
   cursor: default;
 }
@@ -187,7 +187,7 @@
 .forgot-button {
   font-size: 12px;
   font-weight: 700;
-  color: var(--color-text-light);
+  color: var(--text-light);
   background-color: transparent;
   text-transform: uppercase;
 
@@ -195,7 +195,7 @@
 }
 
 .forgot-button:hover {
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
 }
 
 .log-type {
@@ -209,7 +209,7 @@
 .log-type > button {
   font-size: 16px;
   font-weight: 700;
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
   background-color: transparent;
   min-width: 70px;
 }
@@ -227,7 +227,7 @@
   padding: 1rem 1.25rem;
 
   background-color: transparent;
-  border: 2px solid var(--color-border-grey);
+  border: 2px solid var(--border-grey);
   border-radius: 5px;
 
   font-weight: 600;
@@ -239,9 +239,9 @@
 }
 
 .google-auth > button:hover {
-  border: 2px solid var(--color-border-yellow);
-  background-color: var(--color-background-fade-black-2);
-  box-shadow: 0 0 4px 1px var(--color-shadow-yellow);
+  border: 2px solid var(--border-yellow);
+  background-color: var(--background-fade-black-2);
+  box-shadow: 0 0 4px 1px var(--shadow-yellow);
 }
 
 .google-auth > button > svg {

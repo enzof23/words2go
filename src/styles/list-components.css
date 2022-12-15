@@ -9,7 +9,7 @@
   padding: 3rem 1.5rem;
   max-width: 800px;
 
-  background-color: var(--color-background-dark-2);
+  background-color: var(--background-dark-2);
   border-radius: 8px;
 }
 
@@ -25,13 +25,13 @@
   font-weight: 400;
   text-transform: uppercase;
 
-  color: var(--color-text-light-grey);
+  color: var(--text-light-grey);
 }
 
 .title__form {
   display: grid;
   grid-template-columns: 1fr max-content;
-  border-bottom: 2px solid var(--color-border-grey-faded);
+  border-bottom: 2px solid var(--border-grey-faded);
 }
 
 .title__form > input {
@@ -75,7 +75,7 @@
   font-weight: 500;
   text-transform: uppercase;
   text-align: end;
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
 
   transition: 300ms;
 }
@@ -116,8 +116,8 @@
 
   padding: 2.5rem 1.5rem;
   border-radius: 7px;
-  background-color: var(--color-background-dark-3);
-  box-shadow: 0 0 5px 2px var(--color-background-dark-1);
+  background-color: var(--background-dark-3);
+  box-shadow: 0 0 5px 2px var(--background-dark-1);
 }
 
 .input__container {
@@ -132,7 +132,7 @@
 
   font-size: 18px;
   background-color: transparent;
-  border-bottom: 1px solid var(--color-border-grey);
+  border-bottom: 1px solid var(--border-grey);
 }
 
 .input__container > p {
@@ -141,7 +141,7 @@
   letter-spacing: 0.035rem;
   line-height: 15px;
   text-transform: uppercase;
-  color: var(--color-text-light-grey);
+  color: var(--text-light-grey);
 }
 
 .new-word__form > button {
@@ -151,26 +151,26 @@
   align-self: center;
 
   text-transform: uppercase;
-  color: var(--color-text-light);
+  color: var(--text-light);
   transition: 250ms;
 }
 
 .new-word__form > button:disabled {
   cursor: default;
-  color: var(--color-text-dark);
-  background-color: var(--color-background-dark-3);
+  color: var(--text-dark);
+  background-color: var(--background-dark-3);
 }
 
 .new-word__form > button:hover:enabled {
-  color: var(--color-text-yellow);
-  background-color: var(--color-background-dark-1);
+  color: var(--text-yellow);
+  background-color: var(--background-dark-1);
 }
 
 .save__button {
   align-self: center;
 
   font-size: 18px;
-  color: var(--color-text-light-grey);
+  color: var(--text-light-grey);
   text-transform: uppercase;
   border-radius: 8px;
 
@@ -178,9 +178,9 @@
 
   background: linear-gradient(
     180deg,
-    var(--color-background-dark-3) 0%,
+    var(--background-dark-3) 0%,
     rgba(84, 84, 84, 0.8) 40%,
-    var(--color-background-dark-2) 100%
+    var(--background-dark-2) 100%
   );
 
   box-shadow: 0 0 2px var(--base-white-faded);
@@ -198,7 +198,7 @@
 
 .save__button:hover {
   box-shadow: 0 0 5px var(--base-yellow);
-  color: var(--color-text-light);
+  color: var(--text-light);
 }
 
 /* Word Row */
@@ -216,7 +216,7 @@
 
   padding-inline: 1.5rem 1rem;
 
-  background-color: var(--color-background-dark-3);
+  background-color: var(--background-dark-3);
   border-radius: 8px;
 
   transition: 200ms;
@@ -231,7 +231,7 @@
 }
 
 .word-row__container:hover {
-  background-color: var(--color-background-dark-2);
+  background-color: var(--background-dark-2);
 }
 
 .word-row__container:hover > .buttons__container {
@@ -252,7 +252,7 @@
 }
 
 .word__container > div:nth-child(1) {
-  border-right: 2px solid var(--color-border-yellow);
+  border-right: 2px solid var(--border-yellow);
 }
 
 .buttons__container {
@@ -292,8 +292,8 @@
   width: 95%;
 
   padding-bottom: 0.25rem;
-  border-bottom: 1px solid var(--color-border-grey);
-  color: var(--color-text-light);
+  border-bottom: 1px solid var(--border-grey);
+  color: var(--text-light);
 }
 
 .edit-input__focused::after {
@@ -312,7 +312,7 @@
 }
 
 .button__editing:hover {
-  color: var(--color-text-yellow);
+  color: var(--text-yellow);
 }
 
 /* Media & Container Queries */
@@ -323,7 +323,7 @@
   }
 
   .word-row__container:hover {
-    background-color: var(--color-background-dark-3);
+    background-color: var(--background-dark-3);
   }
 }
 
@@ -401,7 +401,7 @@
 
   .word__container > div:nth-child(1) {
     border-right: none;
-    border-bottom: 2px solid var(--color-border-yellow);
+    border-bottom: 2px solid var(--border-yellow);
     padding-bottom: 1rem;
   }
 
@@ -419,7 +419,7 @@
   }
 
   .button__editing:hover {
-    color: var(--color-text-light);
+    color: var(--text-light);
   }
 }
 
@@ -439,8 +439,8 @@
   }
 
   .title__form > button:enabled {
-    background-color: var(--color-background-dark-3);
-    color: var(--color-text-light);
+    background-color: var(--background-dark-3);
+    color: var(--text-light);
     border-radius: 6px;
   }
 }

@@ -32,7 +32,7 @@
   --base-divider-light-1: rgba(60, 60, 60, 0.29);
   --base-divider-light-2: rgba(60, 60, 60, 0.12);
   --base-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --color-border-dark-2: rgba(84, 84, 84, 0.48);
+  --border-dark-2: rgba(84, 84, 84, 0.48);
 
   --base-box-shadow: rgba(0, 0, 0, 0.25);
   --base-background-filter: rgba(84, 84, 84, 0.3);
@@ -43,48 +43,50 @@
   --base-text-dark-1: var(--base-black-mute);
   --base-text-dark-2: var(--base-grey-dark);
 
-  --color-background-light: var(--base-white-soft);
+  --background-light: var(--base-white-soft);
 
-  --color-background-faded: var(--base-background-filter);
+  --background-faded: var(--base-background-filter);
 
   --border-light-hover: var(--base-white-soft);
 
-  --color-border-dark: var(--base-black-soft);
+  --border-dark: var(--base-black-soft);
   --border-dark-hover: var(--base-yellow);
 
-  --color-heading-light: var(--base-white-soft);
-  --color-heading-dark: var(--base-black-soft);
+  --heading-light: var(--base-white-soft);
+  --heading-dark: var(--base-black-soft);
 
   /* Text */
-  --color-text-light: var(--base-white-soft);
-  --color-text-light-grey: var(--base-grey-light);
+  --text-light: var(--base-white-soft);
+  --text-light-grey: var(--base-grey-light);
+  --text-light-faded: var(--base-white-faded-1);
 
-  --color-text-dark: var(--base-black-mute);
+  --text-dark: var(--base-black-mute);
 
-  --color-text-yellow: var(--base-yellow);
+  --text-yellow: var(--base-yellow);
 
   /* Borders */
-  --color-border-light: var(--base-white-soft);
+  --border-light: var(--base-white-soft);
 
-  --color-border-grey: var(--base-grey-light);
-  --color-border-grey-faded: rgba(84, 84, 84, 0.48);
+  --border-grey: var(--base-grey-light);
+  --border-grey-faded: rgba(84, 84, 84, 0.48);
 
-  --color-border-yellow: var(--base-yellow);
-  --color-border-yellow-faded: var(--base-yellow-faded);
+  --border-yellow: var(--base-yellow);
+  --border-yellow-faded: var(--base-yellow-faded);
 
   /* Backgrounds */
-  --color-background-dark-1: var(--base-black-soft);
-  --color-background-dark-2: var(--base-black-mute);
-  --color-background-dark-3: var(--base-grey-dark);
+  --background-dark-1: var(--base-black-soft);
+  --background-dark-2: var(--base-black-mute);
+  --background-dark-3: var(--base-grey-dark);
 
-  --color-background-fade-black: var(--base-black-faded-1);
-  --color-background-fade-black-2: var(--base-black-faded-2);
-  --color-background-fade-grey: var(--base-white-faded-1);
+  --background-fade-black: var(--base-black-faded-1);
+  --background-fade-black-2: var(--base-black-faded-2);
+  --background-fade-grey: var(--base-white-faded-1);
 
-  --color-background-yellow: var(--base-yellow);
+  --background-yellow: var(--base-yellow);
 
   /* Box shadows */
-  --color-shadow-yellow: var(--base-yellow);
+  --shadow-yellow: var(--base-yellow);
+  --shadow-light: var(--base-white-faded-1);
 }
 
 /* CSS basic rules set up */
@@ -106,9 +108,8 @@ html:focus-within {
   font-family: "Roboto", "Open Sans", sans-serif;
   font-size: 16px;
 
-  color-scheme: light dark;
-  color: var(--color-text-light);
-  background: var(--color-background-dark-1);
+  color: var(--text-light);
+  background: var(--background-dark-1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -153,11 +154,16 @@ input,
 button {
   outline: none;
   border: none;
+  color: inherit;
 }
 
 a,
 button {
   cursor: pointer;
+}
+
+button {
+  background-color: var(--background-dark-2);
 }
 
 /* Animations keyframes */
@@ -232,14 +238,14 @@ button {
 
 @keyframes cardflash {
   0% {
-    border: 2px solid var(--color-border-grey-faded);
+    border: 2px solid var(--border-grey-faded);
   }
 
   50% {
-    border: 2px solid var(--color-border-grey);
+    border: 2px solid var(--border-grey);
   }
 
   100% {
-    border: 2px solid var(--color-border-grey-faded);
+    border: 2px solid var(--border-grey-faded);
   }
 }

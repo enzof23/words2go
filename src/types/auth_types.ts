@@ -15,6 +15,10 @@ export type SignUpCredentials = {
   username: string;
 } & SignInCredentials;
 
+export type SignUpFormType = {
+  confirm: string;
+} & SignUpCredentials;
+
 export type SignInEmail = ({
   email,
   password,

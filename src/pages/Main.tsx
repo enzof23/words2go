@@ -1,16 +1,24 @@
+import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
 import { User } from "firebase/auth";
-import { Outlet } from "react-router-dom";
 
-import { Navbar, Sidebar } from "../components";
+import Navbar from "../components/navigation/Navbar";
+import Sidebar from "../components/navigation/Sidebar";
 
 import "../styles/_main.css";
 
-type HomeProps = {
-  user: User;
-};
+type ParamsType = { userid: string };
 
-const Home = ({ user }: HomeProps) => {
+const Main = ({ user }: { user: User }) => {
+  const navigate = useNavigate();
+  const { userid } = useParams<keyof ParamsType>() as ParamsType;
   const { photoURL, displayName } = user;
+
+  useEffect(() => {
+    if (userid && user && userid !== user.uid) {
+      navigate("/");
+    }
+  }, [user]);
 
   return (
     <div className="main__wrapper">
@@ -23,4 +31,4 @@ const Home = ({ user }: HomeProps) => {
   );
 };
 
-export default Home;
+export default Main;

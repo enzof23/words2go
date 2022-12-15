@@ -1,15 +1,11 @@
-import { useEffect, useState } from "react";
-
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useState, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
-import { getListByID } from "../../utils/firebase-api";
-import { OutletLoader } from "../../layouts/_index";
-import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
-import { ImLoop } from "react-icons/im";
+import { useQuery } from "@tanstack/react-query";
 
-import { WordType } from "../../types/list_types";
+import { OutletLoader } from "../layouts/LoadingSpinners";
+import { getListByID } from "../utils/firebase-api";
 
-import "../../styles/_practice.css";
+import "../styles/_practice.css";
 
 type ParamsType = { listid: string; userid: string };
 type CategoryType = "flashcards" | "write" | "match";
@@ -17,11 +13,12 @@ type CategorySelected = {
   category: CategoryType;
   comp: JSX.Element;
 };
-type CompParams = {
-  words: WordType[];
-};
 
-const PracticeDisplay = () => {
+const Flashcard = lazy(() => import("./practice/Flashcard"));
+const Write = lazy(() => import("./practice/Write"));
+const Match = lazy(() => import("./practice/Match"));
+
+const Practice = () => {
   const { userid, listid } = useParams<keyof ParamsType>() as ParamsType;
 
   const { data, error, isFetching, isSuccess } = useQuery({
@@ -38,25 +35,41 @@ const PracticeDisplay = () => {
         case "flashcards":
           setCategorySelected({
             category: id,
-            comp: <Flashcard words={data.words} />,
+            comp: (
+              <Suspense fallback={<OutletLoader />}>
+                <Flashcard words={data.words} />
+              </Suspense>
+            ),
           });
           break;
         case "write":
           setCategorySelected({
             category: id,
-            comp: <Write words={data.words} />,
+            comp: (
+              <Suspense fallback={<OutletLoader />}>
+                <Write words={data.words} />
+              </Suspense>
+            ),
           });
           break;
         case "match":
           setCategorySelected({
             category: id,
-            comp: <Match words={data.words} />,
+            comp: (
+              <Suspense fallback={<OutletLoader />}>
+                <Match words={data.words} />
+              </Suspense>
+            ),
           });
           break;
         default:
           setCategorySelected({
             category: "flashcards",
-            comp: <Flashcard words={data.words} />,
+            comp: (
+              <Suspense fallback={<OutletLoader />}>
+                <Flashcard words={data.words} />
+              </Suspense>
+            ),
           });
       }
   };
@@ -139,74 +152,4 @@ const PracticeDisplay = () => {
   );
 };
 
-export default PracticeDisplay;
-
-const Flashcard = ({ words }: CompParams) => {
-  const [cardFlipped, setCardFlipped] = useState<boolean>(false);
-  const [cardIndex, setCardIndex] = useState<number>(0);
-
-  const checkNumber = (num: number) => {
-    return num > words.length - 1 ? 0 : num < 0 ? words.length - 1 : num;
-  };
-
-  const countHandler = (e: any) => {
-    const navId = e.currentTarget.id;
-    let newIndex;
-
-    switch (navId) {
-      case "prev":
-        newIndex = cardIndex - 1;
-        setCardIndex(checkNumber(newIndex));
-        break;
-      case "next":
-        newIndex = cardIndex + 1;
-        setCardIndex(checkNumber(newIndex));
-        break;
-      default:
-        return;
-    }
-  };
-
-  return (
-    <div className="flashcard__container">
-      <div
-        className={`flashcard__card ${cardFlipped && "is-flipped"}`}
-        onClick={() => setCardFlipped(!cardFlipped)}
-      >
-        <div className="card__face card__front">
-          <p className="card__content">{words[cardIndex].word}</p>
-          <div className="loop-svg">
-            <ImLoop />
-          </div>
-          <p className="card__info">word</p>
-        </div>
-        <div className="card__face card__back">
-          <p className="card__content">{words[cardIndex].translation}</p>
-          <div className="loop-svg">
-            <ImLoop />
-          </div>
-          <p className="card__info">translation</p>
-        </div>
-      </div>
-      <div className="flashcard__navigation">
-        <div id="prev" className="navigation__button" onClick={countHandler}>
-          <MdNavigateBefore />
-        </div>
-        <div className="navigation__counter">
-          {`${cardIndex + 1} / ${words.length}`}
-        </div>
-        <div id="next" className="navigation__button" onClick={countHandler}>
-          <MdNavigateNext />
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Write = ({ words }: CompParams) => {
-  return <div>Write</div>;
-};
-
-const Match = ({ words }: CompParams) => {
-  return <div>Match</div>;
-};
+export default Practice;

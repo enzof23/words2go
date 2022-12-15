@@ -2,22 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
+import { WordType } from "../types/list_types";
 import {
   deleteList,
   getListByID,
   updateListTitle,
-} from "../../utils/firebase-api";
-import { WordType } from "../../types/list_types";
+} from "../utils/firebase-api";
 
-import { BsThreeDotsVertical } from "react-icons/bs";
-import { OutletLoader } from "../../layouts/_index";
-import WordRow from "./ui/WordRow";
-
-import "../../styles/_library.css";
-import "../../styles/list-components.css";
-
+import { OutletLoader } from "../layouts/LoadingSpinners";
 import { HalfCircleSpinner } from "react-epic-spinners";
-import NewWordForm from "./ui/NewWordForm";
+import { BsThreeDotsVertical } from "react-icons/bs";
+
+import WordRow from "./global/WordRow";
+import NewWordForm from "./global/NewWordForm";
+
+import "../styles/_library.css";
+import "../styles/list-components.css";
 
 type ParamsType = {
   listid: string;
@@ -28,7 +28,7 @@ type ModalArgs = {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const ListDisplay = () => {
+const Library = () => {
   const { userid, listid } = useParams<keyof ParamsType>() as ParamsType;
 
   const { data, error, isFetching, isSuccess } = useQuery({
@@ -49,15 +49,22 @@ const ListDisplay = () => {
 
   // list menu function
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+
+  //delete modal to make sure user did not misclick
   const [openModal, setOpenModal] = useState<boolean>(false);
 
-  const [renameList, setRenameList] = useState<boolean>(false);
-  const [isRenamingList, setIsRenamingList] = useState<boolean>(false);
+  // add style to input
   const renameInputRef = useRef<HTMLInputElement>(null);
   const [inputFocus, setInputFocus] = useState<boolean>(false);
+  // state toggled to display title or input to update title
+  const [renameList, setRenameList] = useState<boolean>(false);
+  // shows loader in button while title is updated in firebase
+  const [isRenamingList, setIsRenamingList] = useState<boolean>(false);
 
+  // displays NewWordForm component when true
   const [addWord, setAddWord] = useState<boolean>(false);
 
+  // Library menu click handler
   const menuAction = async (e: any) => {
     switch (e.target.id) {
       case "add-word":
@@ -65,15 +72,14 @@ const ListDisplay = () => {
         break;
       case "rename-list":
         setRenameList(true);
-        // renameInputRef.current?.focus();
         break;
       case "delete-list":
         setOpenModal(true);
         break;
       default:
-        setOpenMenu(!openMenu);
+        setOpenMenu(false);
     }
-    setOpenMenu(!openMenu);
+    setOpenMenu(false);
   };
 
   const renameHandler = async () => {
@@ -85,14 +91,10 @@ const ListDisplay = () => {
         listID: listid,
         newTitle: listTitle,
       });
+      setIsRenamingList(false);
     }
 
-    setIsRenamingList(false);
     setRenameList(false);
-  };
-
-  const addWordHandler = async () => {
-    setAddWord(false);
   };
 
   // close menu when user clicks outside menu
@@ -188,7 +190,10 @@ const ListDisplay = () => {
             {/* Add New Word Start */}
             <div className={`library__new-word ${addWord && "is-adding"}`}>
               <NewWordForm title={listTitle} list={list} setList={setList} />
-              <button className="save__button" onClick={addWordHandler}>
+              <button
+                className="save__button"
+                onClick={() => setAddWord(false)}
+              >
                 done
               </button>
             </div>
@@ -222,6 +227,7 @@ const ListDisplay = () => {
         </div>
         {/* Words Table End */}
 
+        {/* Delete Modal */}
         {openModal && <DeleteModal setOpenModal={setOpenModal} />}
       </>
     );
@@ -233,7 +239,8 @@ const ListDisplay = () => {
     </div>
   );
 };
-export default ListDisplay;
+
+export default Library;
 
 // Modal displayed when user tries to delete list - just as a safe check before deleting list
 const DeleteModal = ({ setOpenModal }: ModalArgs) => {

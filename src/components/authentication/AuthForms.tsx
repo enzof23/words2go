@@ -1,15 +1,61 @@
-import React, { useState } from "react";
-
-import { signUpEmail } from "../../utils/auth";
-import { SignUpCredentials } from "../../types/auth_types";
+import { useState } from "react";
 
 import { AuthenticationInput } from "../../styles/mui-styled";
+import { SignInCredentials, SignUpFormType } from "../../types/auth_types";
+import { signInEmail, signUpEmail } from "../../utils/auth";
 
-type SignUpFormType = {
-  confirm: string;
-} & SignUpCredentials;
+export const SignInForm = () => {
+  const [userCredentials, setUserCredentials] = useState<SignInCredentials>({
+    email: "",
+    password: "",
+  });
 
-const SignUpForm = () => {
+  const formOnChange = (e: any) => {
+    setUserCredentials((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const signIn = (e: any) => {
+    e.preventDefault();
+
+    if (userCredentials.password) {
+      const email = userCredentials.email;
+      const password = userCredentials.password;
+
+      signInEmail({ email, password });
+    } else {
+      alert("An error has occured during sign in, try again");
+    }
+  };
+
+  return (
+    <form onSubmit={signIn} onChange={formOnChange}>
+      <AuthenticationInput
+        label="Email address"
+        type="email"
+        variant="filled"
+        required
+      />
+      <AuthenticationInput
+        label="Password"
+        type="password"
+        variant="filled"
+        required
+      />
+      <button
+        type="submit"
+        className="form__button"
+        disabled={!userCredentials.email || !userCredentials.password}
+      >
+        sign in
+      </button>
+    </form>
+  );
+};
+
+export const SignUpForm = () => {
   const [userCredentials, setUserCredentials] = useState<SignUpFormType>({
     username: "",
     email: "",
@@ -90,5 +136,3 @@ const SignUpForm = () => {
     </form>
   );
 };
-
-export default SignUpForm;

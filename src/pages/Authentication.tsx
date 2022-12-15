@@ -7,10 +7,10 @@ import {
   verifyEmail,
 } from "../utils/auth";
 
+import { SignInForm, SignUpForm } from "../components/authentication/AuthForms";
 import { FcGoogle } from "react-icons/fc";
 import { circle } from "../assets/_index";
 import { Collapse } from "@mui/material";
-import { SignInForm, SignUpForm } from "../components/index";
 
 import "../styles/_authentication.css";
 

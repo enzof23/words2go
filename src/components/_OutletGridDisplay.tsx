@@ -1,27 +1,20 @@
-import {
-  NavigateFunction,
-  useLocation,
-  useNavigate,
-  useOutletContext,
-} from "react-router-dom";
+import { Suspense } from "react";
+import { useLocation, useNavigate, useOutletContext } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { User } from "firebase/auth";
 
-import { getAllLists } from "../../utils/firebase-api";
-import { ListType } from "../../types/list_types";
+import { getAllLists } from "../utils/firebase-api";
+import { GridLoader } from "../layouts/LoadingSpinners";
+import { ListType } from "../types/list_types";
 
-import { ListCard } from "../index";
-import { IoIosReturnLeft, IoIosAddCircleOutline } from "react-icons/io";
-import { GridLoader } from "../../layouts/_index";
+import { IoIosAddCircleOutline, IoIosReturnLeft } from "react-icons/io";
 
-type OutletParams = {
-  data: ListType[];
-  navigate: NavigateFunction;
-};
+// MainOutlet Component is used for both Library and Practice Outlet
+// even though they're on different routes as a way to avoid
+// fetching the lists everytime user switches between the components
 
-const MainOutlet = () => {
+const OutletGridDisplay = () => {
   const user: User = useOutletContext();
-  const navigate = useNavigate();
   const { pathname } = useLocation();
 
   const { isFetching, data, error } = useQuery({
@@ -58,9 +51,13 @@ const MainOutlet = () => {
           <GridLoader />
         ) : data ? (
           pathname === "/" ? (
-            <LibraryGrid data={data} navigate={navigate} />
+            <Suspense fallback={<GridLoader />}>
+              <LibraryGrid data={data} />
+            </Suspense>
           ) : pathname === "/practice" ? (
-            <PracticeGrid data={data} navigate={navigate} />
+            <Suspense fallback={<GridLoader />}>
+              <PracticeGrid data={data} />
+            </Suspense>
           ) : null
         ) : (
           <div>No data found, please try again</div>
@@ -70,15 +67,19 @@ const MainOutlet = () => {
   );
 };
 
-export default MainOutlet;
+export default OutletGridDisplay;
 
-// Libray Grid Component
+// Sub Components Grids
+// Essentially the same for Library and Practice but
+// Practice only displays lists with 5+ words
 
-const LibraryGrid = ({ data, navigate }: OutletParams) => {
+const LibraryGrid = ({ data }: { data: ListType[] }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="outlet__grid">
       {data.map((list) => (
-        <ListCard key={list.listID} data={list} route={null} />
+        <ListCard key={list.listID} data={list} route={"library"} />
       ))}
       <div
         className="card__container action__card"
@@ -91,9 +92,9 @@ const LibraryGrid = ({ data, navigate }: OutletParams) => {
   );
 };
 
-// Practice Grid Component
+const PracticeGrid = ({ data }: { data: ListType[] }) => {
+  const navigate = useNavigate();
 
-const PracticeGrid = ({ data, navigate }: OutletParams) => {
   return (
     <div className="outlet__grid">
       {data.map((list) => {
@@ -109,6 +110,36 @@ const PracticeGrid = ({ data, navigate }: OutletParams) => {
           <IoIosReturnLeft />
         </div>
       ) : null}
+    </div>
+  );
+};
+
+// ListCard Component
+
+type ListCardProps = {
+  data: ListType;
+  route: string;
+};
+
+const ListCard = ({ data, route }: ListCardProps) => {
+  const navigate = useNavigate();
+  const user: User = useOutletContext();
+
+  return (
+    <div
+      className="card__container list__card"
+      onClick={
+        () => navigate(`${route ? `/${route}` : ""}/${user.uid}/${data.listID}`)
+        // <Library /> is rendered on this route, selected list fetch is done in <Library />
+      }
+    >
+      <div className="list__info">
+        <h5>{data.title}</h5>
+        <p>
+          {data.words.length} word{data.words.length === 1 ? null : "s"}
+        </p>
+      </div>
+      <div className="open">{route === null ? "open" : "start"}</div>
     </div>
   );
 };

@@ -4,11 +4,11 @@ import { User } from "firebase/auth";
 import { HalfCircleSpinner } from "react-epic-spinners";
 import { useOutletContext } from "react-router-dom";
 
-import { addWordToList, getListID } from "../../../utils/firebase-api";
-import { getRandomId } from "../../../utils/util";
-import { WordType } from "../../../types/list_types";
+import { addWordToList, getListID } from "../../utils/firebase-api";
+import { getRandomId } from "../../utils/util";
+import { WordType } from "../../types/list_types";
 
-import "../../../styles/list-components.css";
+import "../../styles/list-components.css";
 
 type Prop = {
   setList: React.Dispatch<React.SetStateAction<WordType[]>>;

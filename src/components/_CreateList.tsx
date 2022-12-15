@@ -2,13 +2,15 @@ import { useNavigate, useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import { User } from "firebase/auth";
 
-import { createNewList } from "../../utils/firebase-api";
-import { WordType } from "../../types/list_types";
+import { createNewList } from "../utils/firebase-api";
+import { WordType } from "../types/list_types";
 
 import { HalfCircleSpinner } from "react-epic-spinners";
-import { NewWordForm, WordRow } from "../index";
 
-import "../../styles/list-components.css";
+import NewWordForm from "./global/NewWordForm";
+import WordRow from "./global/WordRow";
+
+import "../styles/list-components.css";
 
 const CreateList = () => {
   const user: User = useOutletContext();
@@ -54,7 +56,7 @@ const CreateList = () => {
           </div>
         )}
         <div className="create-list__container">
-          {/* List Title */}
+          {/* New List Title Form */}
           {!hasTitle ? (
             <div className="title__container">
               <h5 className="title__header">Name your new list</h5>
@@ -81,7 +83,7 @@ const CreateList = () => {
               </form>
             </div>
           ) : null}
-          {/* List Title End */}
+          {/* New List Title Form End */}
 
           {/* New Word Form */}
           {hasTitle ? (

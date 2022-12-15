@@ -5,9 +5,10 @@ import { useOutletContext } from "react-router-dom";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { HalfCircleSpinner } from "react-epic-spinners";
 
-import { deleteWordFromList, updateWord } from "../../../utils/firebase-api";
-import { WordType } from "../../../types/list_types";
-import "../../../styles/list-components.css";
+import { deleteWordFromList, updateWord } from "../../utils/firebase-api";
+import { WordType } from "../../types/list_types";
+
+import "../../styles/list-components.css";
 
 type WordsListProps = {
   listId: string;
@@ -19,11 +20,15 @@ const WordRow = ({ listId, wordData, setList }: WordsListProps) => {
   const user: User = useOutletContext();
   const { wordID, word, translation } = wordData;
 
+  // displays spinner while deleting word in firebase
   const [isDeleting, setIsDeleting] = useState<boolean>(false);
 
+  // displays inputs instead of words when user clicks on "edit" button
   const [isEditing, setIsEditing] = useState<boolean>(false);
+  // displays spinner while updating word in firebase
   const [loadingEdit, setLoadingEdit] = useState<boolean>(false);
 
+  // focus state to add styles to input in focus
   const [wordFocus, setWordFocus] = useState<boolean>(false);
   const [transFocus, setTransFocused] = useState<boolean>(false);
 
@@ -41,6 +46,7 @@ const WordRow = ({ listId, wordData, setList }: WordsListProps) => {
   };
 
   const editWord = async () => {
+    // only update if one of either word or translation has been modified
     if (newWord !== word || newTranslation !== translation) {
       setLoadingEdit(true);
 

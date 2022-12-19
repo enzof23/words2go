@@ -11,7 +11,7 @@ type ParamsType = { listid: string; userid: string };
 type CategoryType = "flashcards" | "write" | "match";
 type CategorySelected = {
   category: CategoryType;
-  comp: JSX.Element;
+  component: JSX.Element;
 };
 
 const Flashcard = lazy(() => import("./practice/Flashcard"));
@@ -35,7 +35,7 @@ const Practice = () => {
         case "flashcards":
           setCategorySelected({
             category: id,
-            comp: (
+            component: (
               <Suspense fallback={<OutletLoader />}>
                 <Flashcard words={data.words} />
               </Suspense>
@@ -45,7 +45,7 @@ const Practice = () => {
         case "write":
           setCategorySelected({
             category: id,
-            comp: (
+            component: (
               <Suspense fallback={<OutletLoader />}>
                 <Write words={data.words} />
               </Suspense>
@@ -55,7 +55,7 @@ const Practice = () => {
         case "match":
           setCategorySelected({
             category: id,
-            comp: (
+            component: (
               <Suspense fallback={<OutletLoader />}>
                 <Match words={data.words} />
               </Suspense>
@@ -65,7 +65,7 @@ const Practice = () => {
         default:
           setCategorySelected({
             category: "flashcards",
-            comp: (
+            component: (
               <Suspense fallback={<OutletLoader />}>
                 <Flashcard words={data.words} />
               </Suspense>
@@ -78,7 +78,7 @@ const Practice = () => {
     if (isSuccess) {
       setCategorySelected({
         category: "flashcards",
-        comp: <Flashcard words={data.words} />,
+        component: <Flashcard words={data.words} />,
       });
     }
   }, [data, isSuccess]);
@@ -97,7 +97,7 @@ const Practice = () => {
     );
   }
 
-  if (isSuccess && categorySelected) {
+  if (isSuccess) {
     return (
       <div className="outlet__wrapper">
         <div className="outlet__container">
@@ -106,7 +106,9 @@ const Practice = () => {
             <div className="practice__category">
               <div
                 className={`category__item ${
-                  categorySelected.category === "flashcards" ? "selected" : null
+                  categorySelected?.category === "flashcards"
+                    ? "selected"
+                    : null
                 }`}
                 id="flashcards"
                 onClick={(e) =>
@@ -117,7 +119,7 @@ const Practice = () => {
               </div>
               <div
                 className={`category__item ${
-                  categorySelected.category === "write" ? "selected" : null
+                  categorySelected?.category === "write" ? "selected" : null
                 }`}
                 id="write"
                 onClick={(e) =>
@@ -128,7 +130,7 @@ const Practice = () => {
               </div>
               <div
                 className={`category__item ${
-                  categorySelected.category === "match" ? "selected" : null
+                  categorySelected?.category === "match" ? "selected" : null
                 }`}
                 id="match"
                 onClick={(e) =>
@@ -139,7 +141,9 @@ const Practice = () => {
               </div>
             </div>
           </div>
-          <div className="practice__container">{categorySelected.comp}</div>
+          <div className="practice__container">
+            {categorySelected ? categorySelected.component : <OutletLoader />}
+          </div>
         </div>
       </div>
     );

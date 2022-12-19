@@ -18,7 +18,7 @@ const Sidebar = ({ userName, userImg }: SidebarProps) => {
     <div className="sidebar__container">
       <div className="sidebar__header">
         {userImg ? (
-          <img src={userImg} alt="user_image" />
+          <img src={userImg} alt="user_image" referrerPolicy="no-referrer" />
         ) : (
           <div className="no-user__image">
             <RiAccountCircleFill />

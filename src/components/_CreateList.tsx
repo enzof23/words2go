@@ -43,7 +43,7 @@ const CreateList = () => {
 
   const createListDone = async () => {
     if (list.length > 0) {
-      navigate(`/${user.uid}/${listID}`);
+      navigate(`/library/${user.uid}/${listID}`);
     }
   };
 

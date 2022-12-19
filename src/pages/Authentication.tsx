@@ -9,7 +9,7 @@ import {
 
 import { SignInForm, SignUpForm } from "../components/authentication/AuthForms";
 import { FcGoogle } from "react-icons/fc";
-import { circle } from "../assets/_index";
+import circle from "../assets/circle.svg";
 import { Collapse } from "@mui/material";
 
 import "../styles/_authentication.css";

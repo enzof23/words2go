@@ -40,6 +40,7 @@ const App = () => {
       {
         path: "/",
         element: <Main user={user} />,
+        errorElement: <ErrorFallback />,
         children: [
           {
             path: "/",
@@ -48,6 +49,7 @@ const App = () => {
                 <OutletGridDisplay />
               </Suspense>
             ),
+            errorElement: <ErrorFallback />,
           },
           {
             path: "practice",
@@ -56,6 +58,7 @@ const App = () => {
                 <OutletGridDisplay />
               </Suspense>
             ),
+            errorElement: <ErrorFallback />,
           },
           {
             path: "create-list",
@@ -64,6 +67,7 @@ const App = () => {
                 <CreateList />
               </Suspense>
             ),
+            errorElement: <ErrorFallback />,
           },
           {
             path: "/library/:userid/:listid",
@@ -72,6 +76,7 @@ const App = () => {
                 <Library />
               </Suspense>
             ),
+            errorElement: <ErrorFallback />,
           },
           {
             path: "/practice/:userid/:listid",
@@ -80,6 +85,7 @@ const App = () => {
                 <Practice />
               </Suspense>
             ),
+            errorElement: <ErrorFallback />,
           },
         ],
       },

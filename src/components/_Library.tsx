@@ -168,7 +168,7 @@ const Library = () => {
                     onChange={(e) => setListTitle(e.currentTarget.value)}
                     onFocus={() => setInputFocus(!inputFocus)}
                     onBlur={() => setInputFocus(false)}
-                    autoFocus
+                    // autoFocus
                   />
                 </div>
                 <button

@@ -87,6 +87,7 @@
   /* Box shadows */
   --shadow-yellow: var(--base-yellow);
   --shadow-light: var(--base-white-faded-1);
+  --shadow-grey: var(--base-black-mute);
 }
 
 /* CSS basic rules set up */
@@ -247,5 +248,28 @@ button {
 
   100% {
     border: 2px solid var(--border-grey-faded);
+  }
+}
+
+@keyframes shakehorizontal {
+  10%,
+  90% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(5px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(5px, 0, 0);
   }
 }

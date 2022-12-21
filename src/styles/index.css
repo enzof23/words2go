@@ -273,3 +273,31 @@ button {
     transform: translate3d(5px, 0, 0);
   }
 }
+
+@keyframes incorrect {
+  10%,
+  90% {
+    transform: translate3d(-5px, 0, 0);
+    box-shadow: 0 0 8px 1px red;
+  }
+
+  20%,
+  80% {
+    transform: translate3d(5px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-5px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(5px, 0, 0);
+  }
+
+  100% {
+    box-shadow: none;
+  }
+}

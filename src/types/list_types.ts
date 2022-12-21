@@ -37,3 +37,11 @@ export type WordType = {
 export type ListType = {
   words: WordType[];
 } & ListFields;
+
+export type WordInfo = {
+  wordID: string;
+  word: string;
+  type: string;
+  isSelected: boolean;
+  isMatched: boolean;
+};

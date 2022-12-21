@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { WordType } from "../../types/list_types";
 import { FiDelete } from "react-icons/fi";
-import { createAnswerArr, getRandomWord } from "../../utils/util";
+import { createAnswerArr, getRandomWord } from "../../utils/practice";
 import { Link } from "react-router-dom";
 
 type Letter = {
@@ -41,10 +41,9 @@ const Write = ({ words }: { words: WordType[] }) => {
   /* Functions */
 
   useEffect(() => {
-    const answerArr = createAnswerArr(
-      question.translation,
-      getRandomWord(words).translation
-    );
+    const answer = question.translation;
+    const secondWord = getRandomWord(words).translation;
+    const answerArr = createAnswerArr(answer, secondWord);
 
     setAnswer(answerArr);
   }, [question, wordsList]);

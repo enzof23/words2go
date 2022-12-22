@@ -30,6 +30,7 @@ type ModalArgs = {
 
 const Library = () => {
   const { userid, listid } = useParams<keyof ParamsType>() as ParamsType;
+  const navigate = useNavigate();
 
   const { data, error, isFetching, isSuccess } = useQuery({
     queryKey: ["fetchList"],
@@ -75,6 +76,9 @@ const Library = () => {
         break;
       case "delete-list":
         setOpenModal(true);
+        break;
+      case "to-practice":
+        navigate(`/practice/${userid}/${listid}`);
         break;
       default:
         setOpenMenu(false);
@@ -151,6 +155,9 @@ const Library = () => {
                     </li>
                     <li id="delete-list" onClick={menuAction}>
                       Delete list
+                    </li>
+                    <li id="to-practice" onClick={menuAction}>
+                      Go to Practice
                     </li>
                   </ul>
                 </div>

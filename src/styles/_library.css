@@ -62,7 +62,7 @@
   cursor: pointer;
 }
 
-.menu > li:nth-child(3) {
+.menu > li:nth-child(4) {
   border-bottom: none;
 }
 
@@ -71,7 +71,7 @@
 }
 
 .menu__open {
-  height: 142px;
+  height: 189px;
   border: 1px solid var(--base-grey-light);
 }
 

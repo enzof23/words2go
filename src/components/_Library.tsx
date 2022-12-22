@@ -12,6 +12,7 @@ import {
 import { OutletLoader } from "../layouts/LoadingSpinners";
 import { HalfCircleSpinner } from "react-epic-spinners";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import { MdNavigateNext } from "react-icons/md";
 
 import WordRow from "./global/WordRow";
 import NewWordForm from "./global/NewWordForm";
@@ -77,9 +78,6 @@ const Library = () => {
       case "delete-list":
         setOpenModal(true);
         break;
-      case "to-practice":
-        navigate(`/practice/${userid}/${listid}`);
-        break;
       default:
         setOpenMenu(false);
     }
@@ -137,8 +135,17 @@ const Library = () => {
             {/* List Title Start */}
             {!renameList ? (
               // Normal list title display
-              <div className="library__title">
-                <h2>{listTitle}</h2>
+              <div className="library__header">
+                <div className="library__title">
+                  <h2>{listTitle}</h2>
+                  {list.length > 4 && (
+                    <button
+                      onClick={() => navigate(`/practice/${userid}/${listid}`)}
+                    >
+                      Go to practice <MdNavigateNext />
+                    </button>
+                  )}
+                </div>
                 <div className="library__menu">
                   <button type="button" onClick={() => setOpenMenu(!openMenu)}>
                     <BsThreeDotsVertical />
@@ -155,9 +162,6 @@ const Library = () => {
                     </li>
                     <li id="delete-list" onClick={menuAction}>
                       Delete list
-                    </li>
-                    <li id="to-practice" onClick={menuAction}>
-                      Go to Practice
                     </li>
                   </ul>
                 </div>

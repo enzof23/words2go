@@ -16,7 +16,7 @@ export const AuthenticationInput = styled(TextField)(() => ({
 
   ".MuiFilledInput-root": {
     "::after": {
-      borderBottomColor: "var(--base-yellow)",
+      borderBottomColor: "var(--yellow)",
       borderBottomWidth: "4px",
     },
   },

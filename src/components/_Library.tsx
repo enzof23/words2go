@@ -185,7 +185,7 @@ const Library = () => {
                   disabled={listTitle.length === 0}
                 >
                   {isRenamingList ? (
-                    <HalfCircleSpinner color="var(--base-yellow)" size={24} />
+                    <HalfCircleSpinner color="var(--yellow)" size={24} />
                   ) : (
                     "done"
                   )}
@@ -268,7 +268,7 @@ const DeleteModal = ({ setOpenModal }: ModalArgs) => {
   return (
     <div className="modal__container">
       {isDeleting ? (
-        <HalfCircleSpinner color="var(--base-yellow)" size={76} />
+        <HalfCircleSpinner color="var(--yellow)" size={76} />
       ) : (
         <div className="modal__content">
           <p>Press confirm to delete the list</p>

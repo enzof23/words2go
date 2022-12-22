@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { User } from "firebase/auth";
 import { useOutletContext } from "react-router-dom";
-
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { HalfCircleSpinner } from "react-epic-spinners";
+import { User } from "firebase/auth";
 
 import { deleteWordFromList, updateWord } from "../../utils/firebase-api";
 import { WordType } from "../../types/list_types";
+
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { HalfCircleSpinner } from "react-epic-spinners";
 
 import "../../styles/list-components.css";
 
@@ -107,7 +107,7 @@ const WordRow = ({ listId, wordData, setList }: WordsListProps) => {
             disabled={!newWord || !newTranslation}
           >
             {loadingEdit ? (
-              <HalfCircleSpinner color="var(--base-yellow)" size={28} />
+              <HalfCircleSpinner color="var(--yellow)" size={28} />
             ) : (
               "done"
             )}
@@ -135,7 +135,7 @@ const WordRow = ({ listId, wordData, setList }: WordsListProps) => {
               onClick={deleteWord}
             >
               {isDeleting ? (
-                <HalfCircleSpinner color="var(--base-yellow)" size={28} />
+                <HalfCircleSpinner color="var(--yellow)" size={28} />
               ) : (
                 <AiOutlineDelete />
               )}

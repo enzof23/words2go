@@ -29,7 +29,7 @@
 
 .library__menu > button:hover {
   background-color: var(--background-dark-2);
-  color: var(--base-yellow);
+  color: var(--yellow);
 }
 
 .library__menu > button > svg {
@@ -49,14 +49,14 @@
   transition: 150ms;
 
   background-color: var(--background-dark-1);
-  border: 0 solid var(--base-grey-light);
+  border: 0 solid var(--grey-light);
   border-radius: 4px;
 }
 
 .menu > li {
   z-index: 5;
   padding: 0.75rem 1.5rem 0.75rem 1rem;
-  border-bottom: 1px solid var(--base-grey-light);
+  border-bottom: 1px solid var(--grey-light);
 
   width: 100%;
   cursor: pointer;
@@ -72,7 +72,7 @@
 
 .menu__open {
   height: 189px;
-  border: 1px solid var(--base-grey-light);
+  border: 1px solid var(--grey-light);
 }
 
 /*  */
@@ -124,7 +124,7 @@
   height: 2px;
   left: 0;
 
-  background: var(--base-yellow);
+  background: var(--yellow);
 
   transition: 300ms;
 }
@@ -147,7 +147,7 @@
 }
 
 .rename__button:hover:enabled {
-  color: var(--base-yellow);
+  color: var(--yellow);
   background-color: var(--background-dark-3);
 }
 
@@ -181,7 +181,7 @@
   padding: 3rem;
   border-radius: 4px;
   background-color: var(--background-dark-3);
-  box-shadow: 0 0 10px var(--base-grey-dark);
+  box-shadow: 0 0 10px var(--grey-dark);
 
   font-size: 20px;
 
@@ -207,7 +207,7 @@
   font-size: 16px;
 
   border-radius: 8px;
-  box-shadow: 0 0 5px var(--base-box-shadow);
+  box-shadow: 0 0 5px var(--box-shadow);
 }
 
 .cancel {
@@ -221,7 +221,7 @@
 .empty__list {
   font-size: 16px;
   text-transform: uppercase;
-  color: var(--base-text-light-2);
+  color: var(--text-light-2);
 }
 
 .empty__list > span {
@@ -231,7 +231,7 @@
 }
 
 .empty__list > span:hover {
-  color: var(--base-yellow);
+  color: var(--yellow);
 }
 
 @container outlet (max-width: 600px) {

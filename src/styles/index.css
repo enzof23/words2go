@@ -4,90 +4,61 @@
 
 /* color palette */
 :root {
-  --base-black: rgb(0, 0, 0);
-  --base-black-soft: rgb(34, 34, 34);
-  --base-black-mute: rgb(41, 41, 41);
+  --black-soft: rgb(34, 34, 34);
+  --black-mute: rgb(41, 41, 41);
 
-  --base-black-faded-1: rgba(0, 0, 0, 0.15);
-  --base-black-faded-2: rgba(0, 0, 0, 0.35);
+  --black-faded-1: rgba(0, 0, 0, 0.15);
+  --black-faded-2: rgba(0, 0, 0, 0.35);
 
-  --base-white: rgb(255, 255, 255);
-  --base-white-soft: rgb(241, 241, 241);
+  --white-soft: rgb(241, 241, 241);
+  --white-faded: rgba(255, 255, 255, 0.25);
 
-  --base-white-faded-1: rgba(255, 255, 255, 0.25);
-  --base-white-faded-2: rgba(255, 255, 255, 0.75);
+  --grey-light: rgb(206, 195, 189);
+  --grey-dark: rgb(84, 84, 84);
 
-  --base-grey-light: rgb(206, 195, 189);
-  --base-grey-dark: rgb(84, 84, 84);
-
-  --base-yellow: rgb(254, 205, 31);
-  --base-yellow-dark: rgb(218, 173, 9);
-  --base-yellow-faded: rgba(254, 205, 31, 0.2);
+  --yellow: rgb(254, 205, 31);
+  --yellow-faded: rgba(254, 205, 31, 0.2);
 
   /* new var */
 }
 
 /* semantic color variables for this project */
 :root {
-  --base-divider-light-1: rgba(60, 60, 60, 0.29);
-  --base-divider-light-2: rgba(60, 60, 60, 0.12);
-  --base-divider-dark-1: rgba(84, 84, 84, 0.65);
-  --border-dark-2: rgba(84, 84, 84, 0.48);
-
-  --base-box-shadow: rgba(0, 0, 0, 0.25);
-  --base-background-filter: rgba(84, 84, 84, 0.3);
-
-  --base-text-light-1: var(--base-white-soft);
-  --base-text-light-2: var(--base-grey-light);
-
-  --base-text-dark-1: var(--base-black-mute);
-  --base-text-dark-2: var(--base-grey-dark);
-
-  --background-light: var(--base-white-soft);
-
-  --background-faded: var(--base-background-filter);
-
-  --border-light-hover: var(--base-white-soft);
-
-  --border-dark: var(--base-black-soft);
-  --border-dark-hover: var(--base-yellow);
-
-  --heading-light: var(--base-white-soft);
-  --heading-dark: var(--base-black-soft);
-
   /* Text */
-  --text-light: var(--base-white-soft);
-  --text-light-grey: var(--base-grey-light);
-  --text-light-faded: var(--base-white-faded-1);
+  --text-light: var(--white-soft);
+  --text-light-grey: var(--grey-light);
+  --text-light-faded: var(--white-faded);
 
-  --text-dark: var(--base-black-mute);
+  --text-dark: var(--black-mute);
 
-  --text-yellow: var(--base-yellow);
+  --text-yellow: var(--yellow);
 
   /* Borders */
-  --border-light: var(--base-white-soft);
+  --border-light: var(--white-soft);
 
-  --border-grey: var(--base-grey-light);
+  --border-grey: var(--grey-light);
   --border-grey-faded: rgba(84, 84, 84, 0.48);
 
-  --border-yellow: var(--base-yellow);
-  --border-yellow-faded: var(--base-yellow-faded);
+  --border-yellow: var(--yellow);
+  --border-yellow-faded: var(--yellow-faded);
 
   /* Backgrounds */
-  --background-dark-1: var(--base-black-soft);
-  --background-dark-2: var(--base-black-mute);
-  --background-dark-3: var(--base-grey-dark);
+  --background-light: var(--white-soft);
 
-  --background-fade-black: var(--base-black-faded-1);
-  --background-fade-black-2: var(--base-black-faded-2);
-  --background-fade-grey: var(--base-white-faded-1);
+  --background-dark-1: var(--black-soft);
+  --background-dark-2: var(--black-mute);
+  --background-dark-3: var(--grey-dark);
 
-  --background-yellow: var(--base-yellow);
+  --background-fade-black: var(--black-faded-1);
+  --background-fade-black-2: var(--black-faded-2);
+  --background-fade-grey: var(--white-faded);
+
+  --background-yellow: var(--yellow);
 
   /* Box shadows */
-  --shadow-yellow: var(--base-yellow);
-  --shadow-light: var(--base-white-faded-1);
-  --shadow-grey: var(--base-black-mute);
+  --shadow-yellow: var(--yellow);
+  --shadow-light: var(--white-faded);
+  --shadow-grey: var(--black-mute);
 }
 
 /* CSS basic rules set up */

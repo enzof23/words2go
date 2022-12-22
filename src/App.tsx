@@ -35,74 +35,74 @@ const App = () => {
       </Suspense>
     );
 
-  if (user) {
-    const router = createBrowserRouter([
-      {
-        path: "/",
-        element: <Main user={user} />,
-        errorElement: <ErrorFallback />,
-        children: [
-          {
-            path: "/",
-            element: (
-              <Suspense fallback={<OutletLoader />}>
-                <OutletGridDisplay />
-              </Suspense>
-            ),
-            errorElement: <ErrorFallback />,
-          },
-          {
-            path: "practice",
-            element: (
-              <Suspense fallback={<OutletLoader />}>
-                <OutletGridDisplay />
-              </Suspense>
-            ),
-            errorElement: <ErrorFallback />,
-          },
-          {
-            path: "create-list",
-            element: (
-              <Suspense fallback={<OutletLoader />}>
-                <CreateList />
-              </Suspense>
-            ),
-            errorElement: <ErrorFallback />,
-          },
-          {
-            path: "/library/:userid/:listid",
-            element: (
-              <Suspense fallback={<OutletLoader />}>
-                <Library />
-              </Suspense>
-            ),
-            errorElement: <ErrorFallback />,
-          },
-          {
-            path: "/practice/:userid/:listid",
-            element: (
-              <Suspense fallback={<OutletLoader />}>
-                <Practice />
-              </Suspense>
-            ),
-            errorElement: <ErrorFallback />,
-          },
-        ],
-      },
-    ]);
-
+  if (!user) {
     return (
       <Suspense fallback={<FullscreenLoader />}>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-        </QueryClientProvider>
+        <Authentication />
       </Suspense>
     );
   }
 
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Main user={user} />,
+      errorElement: <ErrorFallback />,
+      children: [
+        {
+          path: "/",
+          element: (
+            <Suspense fallback={<OutletLoader />}>
+              <OutletGridDisplay />
+            </Suspense>
+          ),
+          errorElement: <ErrorFallback />,
+        },
+        {
+          path: "practice",
+          element: (
+            <Suspense fallback={<OutletLoader />}>
+              <OutletGridDisplay />
+            </Suspense>
+          ),
+          errorElement: <ErrorFallback />,
+        },
+        {
+          path: "create-list",
+          element: (
+            <Suspense fallback={<OutletLoader />}>
+              <CreateList />
+            </Suspense>
+          ),
+          errorElement: <ErrorFallback />,
+        },
+        {
+          path: "/library/:userid/:listid",
+          element: (
+            <Suspense fallback={<OutletLoader />}>
+              <Library />
+            </Suspense>
+          ),
+          errorElement: <ErrorFallback />,
+        },
+        {
+          path: "/practice/:userid/:listid",
+          element: (
+            <Suspense fallback={<OutletLoader />}>
+              <Practice />
+            </Suspense>
+          ),
+          errorElement: <ErrorFallback />,
+        },
+      ],
+    },
+  ]);
+
   return (
     <Suspense fallback={<FullscreenLoader />}>
-      <Authentication />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </Suspense>
   );
 };

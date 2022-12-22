@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import { User } from "firebase/auth";
+import { useOutletContext } from "react-router-dom";
 
 import { HalfCircleSpinner } from "react-epic-spinners";
-import { useOutletContext } from "react-router-dom";
 
 import { addWordToList, getListID } from "../../utils/firebase-api";
 import { getRandomId } from "../../utils/util";
@@ -85,7 +85,7 @@ const NewWordForm = ({ title, list, setList }: Prop) => {
       </div>
       <button type="submit" disabled={!word || !translation}>
         {isAdding ? (
-          <HalfCircleSpinner color="var(--base-yellow)" size={28} />
+          <HalfCircleSpinner color="var(--yellow)" size={28} />
         ) : (
           "add"
         )}

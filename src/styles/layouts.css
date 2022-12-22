@@ -57,6 +57,8 @@
   place-items: center;
   grid-template-columns: 1fr;
   row-gap: 1rem;
+
+  color: #c42f2f;
 }
 
 .errormsg__container > svg {

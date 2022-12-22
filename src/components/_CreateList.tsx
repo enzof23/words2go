@@ -75,7 +75,7 @@ const CreateList = () => {
                 />
                 <button type="submit" disabled={!title}>
                   {creatingList ? (
-                    <HalfCircleSpinner color="var(--base-yellow)" size={28} />
+                    <HalfCircleSpinner color="var(--yellow)" size={28} />
                   ) : (
                     "create"
                   )}

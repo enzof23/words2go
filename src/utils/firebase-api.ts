@@ -130,23 +130,6 @@ export const getListID = async (userID: string, title: string) => {
   }
 };
 
-export const getListTitle = async ({ userID, listID }: ListRef) => {
-  const docRef = collection(database, userID);
-  const docLists = await getDocs(docRef);
-  let listTitle: string = "";
-
-  try {
-    docLists.docs.find((doc) =>
-      doc.id === listID ? (listTitle = doc.data().title) : null
-    );
-
-    return listTitle;
-  } catch (err) {
-    console.log(`An error has occured: ${err}`);
-    return listTitle;
-  }
-};
-
 /////// Read / Get Data - End ///////
 
 /////// Delete Data ///////
@@ -156,24 +139,32 @@ export const deleteWordFromList = async ({
   listID,
   wordID,
 }: WordRef) => {
-  const wordRef = doc(database, userID, listID, "words", wordID);
-  await deleteDoc(wordRef);
+  try {
+    const wordRef = doc(database, userID, listID, "words", wordID);
+    await deleteDoc(wordRef);
+  } catch (err) {
+    console.log(`An error has occured: ${err}`);
+  }
 };
 
 export const deleteList = async ({ userID, listID }: ListRef) => {
-  const wordsListRef = collection(database, userID, listID, "words");
-  const listDocs = await getDocs(wordsListRef);
+  try {
+    const wordsListRef = collection(database, userID, listID, "words");
+    const listDocs = await getDocs(wordsListRef);
 
-  // in order to delete a doc (list) in firebase
-  // you must first delete all subcollections (words)
-  for (const word of listDocs.docs) {
-    const wordRef = doc(database, userID, listID, "words", word.id);
-    await deleteDoc(wordRef);
+    // in order to delete a doc (list) in firebase
+    // you must first delete all subcollections (words)
+    for (const word of listDocs.docs) {
+      const wordRef = doc(database, userID, listID, "words", word.id);
+      await deleteDoc(wordRef);
+    }
+
+    // then you can delete the doc
+    const docRef = doc(database, userID, listID);
+    await deleteDoc(docRef);
+  } catch (err) {
+    console.log(`An error has occured: ${err}`);
   }
-
-  // then you can delete the doc
-  const docRef = doc(database, userID, listID);
-  await deleteDoc(docRef);
 };
 
 /////// Update Data ///////
@@ -184,8 +175,12 @@ export const updateWord = async ({
   wordID,
   newWord,
 }: UpdatedWordArgs) => {
-  const wordRef = doc(database, userID, listID, "words", wordID);
-  await updateDoc(wordRef, newWord);
+  try {
+    const wordRef = doc(database, userID, listID, "words", wordID);
+    await updateDoc(wordRef, newWord);
+  } catch (err) {
+    console.log(`An error has occured: ${err}`);
+  }
 };
 
 export const updateListTitle = async ({
@@ -193,12 +188,16 @@ export const updateListTitle = async ({
   listID,
   newTitle,
 }: UpdateTitleArgs) => {
-  const listRef = doc(database, userID, listID);
-  const list = await getDoc(listRef);
-  const date = list.data()?.date;
+  try {
+    const listRef = doc(database, userID, listID);
+    const list = await getDoc(listRef);
+    const date = list.data()?.date;
 
-  await setDoc(listRef, {
-    title: newTitle,
-    date,
-  });
+    await setDoc(listRef, {
+      title: newTitle,
+      date,
+    });
+  } catch (err) {
+    console.log(`An error has occured: ${err}`);
+  }
 };

@@ -1,8 +1,9 @@
 import { useState } from "react";
 
-import { AuthenticationInput } from "../../styles/mui-styled";
 import { SignInCredentials, SignUpFormType } from "../../types/auth_types";
 import { signInEmail, signUpEmail } from "../../utils/auth";
+
+import { AuthenticationInput } from "../../styles/mui-styled";
 
 export const SignInForm = () => {
   const [userCredentials, setUserCredentials] = useState<SignInCredentials>({

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
-import { WordType } from "../../types/list_types";
-import { FiDelete } from "react-icons/fi";
-import { createAnswerArr, getRandomWord } from "../../utils/practice";
 import { Link } from "react-router-dom";
+
+import { WordType } from "../../types/list_types";
+import { createAnswerArr, getRandomWord } from "../../utils/practice";
+
+import { FiDelete } from "react-icons/fi";
 
 type Letter = {
   letter: string;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import { WordInfo, WordType } from "../../types/list_types";
+
 import { createMatchCard } from "../../utils/practice";
+import { WordInfo, WordType } from "../../types/list_types";
 
 const Match = ({ words }: { words: WordType[] }) => {
   const [shuffledWords, setShuffledWords] = useState<WordInfo[]>(

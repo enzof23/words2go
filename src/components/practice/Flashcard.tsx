@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { WordType } from "../../types/list_types";
+
 import { MdNavigateNext, MdNavigateBefore } from "react-icons/md";
 import { ImLoop } from "react-icons/im";
 

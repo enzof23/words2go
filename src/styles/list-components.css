@@ -183,7 +183,7 @@
     var(--background-dark-2) 100%
   );
 
-  box-shadow: 0 0 2px var(--base-white-faded);
+  box-shadow: 0 0 2px var(--white-faded);
 
   transition: 250ms;
 
@@ -197,7 +197,7 @@
 }
 
 .save__button:hover {
-  box-shadow: 0 0 5px var(--base-yellow);
+  box-shadow: 0 0 5px var(--yellow);
   color: var(--text-light);
 }
 

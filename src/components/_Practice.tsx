@@ -1,6 +1,8 @@
 import { useEffect, useState, lazy, Suspense } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+
+import { MdNavigateNext } from "react-icons/md";
 
 import { OutletLoader } from "../layouts/LoadingSpinners";
 import { getListByID } from "../utils/firebase-api";
@@ -20,6 +22,7 @@ const Match = lazy(() => import("./practice/Match"));
 
 const Practice = () => {
   const { userid, listid } = useParams<keyof ParamsType>() as ParamsType;
+  const navigate = useNavigate();
 
   const { data, error, isFetching, isSuccess } = useQuery({
     queryKey: ["fetchList"],
@@ -102,7 +105,12 @@ const Practice = () => {
       <div className="outlet__wrapper">
         <div className="outlet__container">
           <div className="practice__header">
-            <h2>{data.title}</h2>
+            <div className="practice__title">
+              <h2>{data.title}</h2>
+              <button onClick={() => navigate(`/library/${userid}/${listid}`)}>
+                View in Library <MdNavigateNext />
+              </button>
+            </div>
             <div className="practice__category">
               <div
                 className={`category__item ${

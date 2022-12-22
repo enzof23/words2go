@@ -10,6 +10,7 @@ import {
 import { SignInForm, SignUpForm } from "../components/authentication/AuthForms";
 import { FcGoogle } from "react-icons/fc";
 import circle from "../assets/circle.svg";
+import arrow from "../assets/arrow.svg";
 import { Collapse } from "@mui/material";
 
 import "../styles/_authentication.css";
@@ -58,7 +59,15 @@ const Authentication = () => {
               to play around with the application.
             </p>
           </div>
+
+          {/* Demo Pointer */}
+          <div className="demo__pointer">
+            <img src={arrow} alt="arrow" />
+            <p>try out the demo</p>
+          </div>
+          {/* Demo Pointer End */}
         </section>
+
         {/* Authentication Header End */}
 
         {/* Authentication Forms */}
@@ -120,6 +129,7 @@ const Authentication = () => {
         </section>
         {/* Authentication Forms End */}
       </main>
+
       {/* Background Circles */}
       <div className="circles__container">
         <img src={circle} alt="circle" />

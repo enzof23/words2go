@@ -251,6 +251,32 @@
 
 /*  */
 
+/* Demo Arrow */
+
+.demo__pointer {
+  position: absolute;
+  top: 102%;
+  left: 270px;
+}
+
+.demo__pointer > img {
+  height: 125px;
+  width: 145px;
+}
+
+.demo__pointer > p {
+  position: absolute;
+  font-family: "Nabla";
+  font-size: 32px;
+  line-height: 45px;
+  text-align: center;
+  text-transform: uppercase;
+  max-width: 10ch;
+
+  top: 55%;
+  left: -150px;
+}
+
 /*  */
 
 /* Background circles */
@@ -346,6 +372,15 @@
     margin-left: 0;
     margin: 0 auto;
   }
+
+  .demo__pointer {
+    left: calc(50% - 70px);
+  }
+
+  .demo__pointer > img {
+    height: 120px;
+    width: 120px;
+  }
 }
 
 @container authentication (max-width: 780px) {
@@ -365,6 +400,10 @@
   .circles__container {
     opacity: 0.5;
     filter: blur(4px);
+  }
+
+  .demo__pointer {
+    display: none;
   }
 }
 
@@ -424,5 +463,11 @@
 @container forms (max-width: 320px) {
   .log-type {
     flex-direction: column;
+  }
+}
+
+@media screen and (max-height: 840px) {
+  .demo__pointer {
+    display: none;
   }
 }
